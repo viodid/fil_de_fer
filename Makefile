@@ -1,8 +1,7 @@
 NAME=fdf
-BINARY=$(NAME)
 CODEDIRS=src
 INCDIR=./include/
-INCLIB=./lib/libft.a ./lib/gnl/gnl.a ./lib/printf/printf.a
+INCLIB=./lib/libft/libft.a ./lib/gnl/gnl.a ./lib/printf/printf.a
 
 CC=gcc
 OPT=-Og
@@ -10,22 +9,20 @@ OPT=-Og
 #DEPFLAGS=-MP -MD
 CFLAGS=-Wall -Wextra -Werror -I$(INCDIR) $(OPT)
 
-CFILES=$(shell find $(CODEDIRS) -name '*client.c')
-OBJECTS = $(CFILES:.c=.o)
+CFILES=$(shell find $(CODEDIRS) -name '*.c')
+OBJECTS=$(CFILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(BINARY)
-
 # https://stackoverflow.com/questions/3220277/what-do-the-makefile-symbols-and-mean
-$(BINARY): $(OBJECTS)
+$(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ $(INCLIB)
 
 clean:
-	rm -f $(OBJECTS) $(BONUS_OBJ)
+	rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(BINARY)
+	rm -f $(NAME)
 
 re: fclean all
 
@@ -37,9 +34,11 @@ diff:
 struct:
 	$(info Create folder and basic file structure.)
 	mkdir -p src include
-	git clone https://github.com/viodid/libft.git lib/
-	git clone https://github.com/viodid/ft_printf.git lib/printf/
-	git clone https://github.com/viodid/GNL.git lib/gnl/
-	cd lib; make; make clean; rm -rf .git
-	cd lib/ft_pintf; make; make clean; rm -rf .git
-	cd lib/gnl; make; make clean; rm -rf .git
+	git clone https://github.com/viodid/libft.git lib/libft
+	git clone https://github.com/viodid/ft_printf.git lib/printf
+	git clone https://github.com/viodid/GNL.git lib/gnl
+	cd lib/libft && make && make clean && rm -rf .git
+	cd lib/printf && make && make clean && rm -rf .git
+	cd lib/gnl && make && make clean && rm -rf .git
+
+.PHONY: fdf all clean fclean re diff struc
