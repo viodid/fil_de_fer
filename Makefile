@@ -1,13 +1,16 @@
 NAME=fdf
 CODEDIRS=src
-INCDIR=./include/
+INCDIR=./include/ mlx_linux
 INCLIB=./lib/libft/libft.a ./lib/gnl/gnl.a ./lib/printf/printf.a
+INCPATH=/usr/lib
+LINKLIB=mlx_Linux Xext X11 m z
 
 CC=gcc
 OPT=-Og
 # https://stackoverflow.com/questions/8025766/makefile-auto-dependency-generation
 #DEPFLAGS=-MP -MD
-CFLAGS=-Wall -Wextra -Werror -I$(INCDIR) $(OPT)
+# https://www.rapidtables.com/code/linux/gcc/gcc-l.html
+CFLAGS= -I$(INCDIR) -L$(INCPATH) -l$(LINKLIB) $(OPT)
 
 CFILES=$(shell find $(CODEDIRS) -name '*.c')
 OBJECTS=$(CFILES:.c=.o)
@@ -15,8 +18,10 @@ OBJECTS=$(CFILES:.c=.o)
 all: $(NAME)
 
 # https://stackoverflow.com/questions/3220277/what-do-the-makefile-symbols-and-mean
+# this works: gcc src/main.c  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o fdf
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ $(INCLIB)
+
 
 clean:
 	rm -f $(OBJECTS)
