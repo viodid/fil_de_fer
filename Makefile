@@ -6,7 +6,7 @@ INCPATH=/usr/lib
 LINKLIB=mlx_Linux Xext X11 m z
 
 CC=gcc
-OPT=-Og
+OPT=-g3
 # https://stackoverflow.com/questions/8025766/makefile-auto-dependency-generation
 #DEPFLAGS=-MP -MD
 # https://www.rapidtables.com/code/linux/gcc/gcc-l.html
@@ -19,8 +19,11 @@ all: $(NAME)
 
 # https://stackoverflow.com/questions/3220277/what-do-the-makefile-symbols-and-mean
 # this works: gcc src/main.c  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o fdf
-$(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^ $(INCLIB)
+#$(NAME): $(OBJECTS)
+#	$(CC) $(CFLAGS) -o $@ $^ $(INCLIB)
+
+$(NAME):
+	gcc src/main.c -g3 -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o fdf
 
 
 clean:
