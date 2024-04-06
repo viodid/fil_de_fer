@@ -17,11 +17,6 @@ OBJECTS=$(CFILES:.c=.o)
 
 all: $(NAME)
 
-# https://stackoverflow.com/questions/3220277/what-do-the-makefile-symbols-and-mean
-# this works: gcc src/main.c  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o fdf
-#$(NAME): $(OBJECTS)
-#	$(CC) $(CFLAGS) -o $@ $^ $(INCLIB)
-
 $(NAME):
 	gcc src/main.c -g3 MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o fdf
 
