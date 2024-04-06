@@ -23,8 +23,7 @@ all: $(NAME)
 #	$(CC) $(CFLAGS) -o $@ $^ $(INCLIB)
 
 $(NAME):
-	gcc src/main.c -g3 -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o fdf
-
+	gcc src/main.c -g3 MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o fdf
 
 clean:
 	rm -f $(OBJECTS)
@@ -40,7 +39,7 @@ diff:
 	@git --no-pager diff --stat
 
 struct:
-	$(info Create folder and basic file structure.)
+	info Create folder and basic file structure.)
 	mkdir -p src include
 	git clone https://github.com/viodid/libft.git lib/libft
 	git clone https://github.com/viodid/ft_printf.git lib/printf

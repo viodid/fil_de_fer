@@ -6,59 +6,46 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/03/15 21:15:40 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/04/06 22:11:50 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "../include/fdf.h"
+#define WIDTH 256
+#define HEIGHT 256
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-void	my_mlxpixel_put(t_data *data, int x, int y, int color);
-void	draw_circle(t_data *data);
+static void	ft_error(void);
+static void	ft_hook(void* param);
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hey there.");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
+	mlx_set_setting(MLX_MAXIMIZED, true);
+	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	if (!mlx)
+		ft_error();
 
-	my_mlxpixel_put(&img, 5, 5, 0x00FFFF00);
-	draw_circle(&img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_image_t*	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+		ft_error();
+
+	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
+
+	mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(mlx);
+	mlx_terminate(mlx);
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
-void	draw_circle(t_data *data)
+static void	ft_error(void)
 {
-	int	i;
-
-	i = 100;
-	while (i++ < 1000)
-	{
-		my_mlxpixel_put(data, 500, i, 0x00FFFF00);
-		my_mlxpixel_put(data, 1000, i, 0xFFFFFF00);
-	}
+	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	exit(EXIT_FAILURE);
 }
 
-void	my_mlxpixel_put(t_data *data, int x, int y, int color)
+static void	ft_hook(void* param)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
-
-	*(unsigned int *)dst = color;
+	const mlx_t* mlx = param;
+	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }
