@@ -20,6 +20,9 @@ all: $(NAME)
 $(NAME):
 	gcc src/main.c -g3 MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o fdf
 
+mac:
+	gcc src/main.c MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/dyunta/homebrew/Cellar/glfw/3.4/lib/" -o fdf
+
 clean:
 	rm -f $(OBJECTS)
 
