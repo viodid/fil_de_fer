@@ -1,6 +1,6 @@
 NAME=fdf
 CODEDIRS=src
-INCDIR=./include/ mlx_linux
+INCDIR=./include/ ./MLX42/
 INCLIB=./lib/libft/libft.a ./lib/gnl/gnl.a ./lib/printf/printf.a
 INCPATH=/usr/lib
 LINKLIB=mlx_Linux Xext X11 m z
@@ -18,10 +18,7 @@ OBJECTS=$(CFILES:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc src/main.c -g3 MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o fdf
-
-mac:
-	gcc src/main.c MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/dyunta/homebrew/Cellar/glfw/3.4/lib/" -o fdf
+	gcc src/main.c -g3 MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o fdf
 
 clean:
 	rm -f $(OBJECTS)
@@ -37,7 +34,7 @@ diff:
 	@git --no-pager diff --stat
 
 struct:
-	info Create folder and basic file structure.)
+	info Create folder and basic file structure.
 	mkdir -p src include
 	git clone https://github.com/viodid/libft.git lib/libft
 	git clone https://github.com/viodid/ft_printf.git lib/printf
