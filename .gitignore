@@ -54,3 +54,4 @@ dkms.conf
 .idea/
 minilibx*/
 MLX42/
+.vscode/
