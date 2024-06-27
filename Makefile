@@ -18,7 +18,7 @@ OBJECTS=$(CFILES:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc src/main.c -g3 MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o fdf
+	gcc $(CFILES) -g3 MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o fdf
 
 clean:
 	rm -f $(OBJECTS)
