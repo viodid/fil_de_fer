@@ -41,6 +41,7 @@ char	*get_next_line(int fd)
 		free_list(header);
 		return (NULL);
 	}
+
 	output = get_line_output(header);
 	header = rearrange_content(header);
 	return (output);
