@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/03 20:17:55 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/04 20:32:33 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #include <unistd.h>
 #include <errno.h>
 
-char	**parser(int argc, const char *map);
+int		**parser(int argc, const char *map);
+int		**parse_file_to_matrix(const char *file_path);
 void	args_sanitizer(int argc, char *argv[]);
 
 #endif

@@ -6,33 +6,19 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/03 20:29:55 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/04 21:03:19 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-void	args_sanitizer(int argc, char *argv[])
-{
-	char	*file_path;
-	size_t	path_len;
+static int	line_len(const char *line);
 
-	file_path = NULL;
-	if (argc > 2)
-		errno = E2BIG;
-	else if (argc < 2)
-		errno = EOPNOTSUPP;
-	file_path = argv[1];
-	path_len = ft_strlen(file_path);
-	if (ft_strncmp(".fdf", file_path, path_len) != 0)
-		errno = ENOENT;
-}
-
-char	**parser(int argc, const char *file_path)
+int**	parser(int argc, const char *file_path)
 {
 	int		fd;
 	char	*line;
-	char	**map;
+	int		**map;
 
 	fd = open(file_path, O_RDONLY);
 	line = get_next_line(fd);
@@ -47,5 +33,56 @@ char	**parser(int argc, const char *file_path)
 	{
 		line = get_next_line(fd);
 	}
-	return "hey";
+	return map;
 }
+
+int	**parse_file_to_matrix(const char *file_path)
+{
+	int		fd;
+	int		**map;
+	char	*line;
+
+	fd = open(file_path, O_RDONLY);
+	line = get_next_line(fd);
+	int test_line_len = line_len(line);
+	map = malloc(sizeof(char) * line_len(line));
+	if (!map)
+	{
+		errno = ENOMEM;
+		perror("Error message");
+		exit(EXIT_FAILURE);
+	}
+	while (line)
+	{
+		line = get_next_line(fd);
+	}
+	return map;
+}
+
+/*
+ * Custom line length function. Returns the total number of 'items'
+ * in the line. An item is any character divided by whitespace/s.
+ * There is always items + 1 items in the line.
+ */
+static int	line_len(const char *line)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = 0;
+	while (line[i])
+	{
+		if (line[i++] == ' ')
+		{
+			len++;
+			while (line[i++] == ' ')
+				i++;
+		}
+		i++;
+	}
+	if (len == 0)
+		return (0);
+	return (len + 1);
+}
+

@@ -1,7 +1,7 @@
 NAME=fdf
 CODEDIRS=src
 INCDIR=./include/ ./MLX42/
-INCLIB=./lib/libft/libft.a ./lib/gnl/gnl.a ./lib/printf/printf.a
+INCLIB=./lib/libft/libft.a ./lib/GNL/gnl.a ./lib/printf/printf.a
 INCPATH=/usr/lib
 LINKLIB=mlx_Linux Xext X11 m z
 
@@ -18,7 +18,7 @@ OBJECTS=$(CFILES:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFILES) -g3 MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -o fdf
+	gcc $(CFILES) -g3 MLX42/build/libmlx42.a $(INCLIB) -ldl -lglfw -pthread -lm -o fdf
 
 clean:
 	rm -f $(OBJECTS)
