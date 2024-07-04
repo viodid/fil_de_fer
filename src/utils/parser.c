@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/04 21:43:26 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/04 21:50:52 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	**parse_file_to_matrix(const char *file_path)
 	if (!map)
 	{
 		errno = ENOMEM;
-		perror("Error message");
+		perror("Memory allocation");
 		exit(EXIT_FAILURE);
 	}
 	height = 0;
@@ -59,6 +59,13 @@ int	**parse_file_to_matrix(const char *file_path)
 		line = get_next_line(fd);
 		height++;
 	}
+	if (close(fd))
+	{
+		perror("Close file error");
+		exit(EXIT_FAILURE);
+	}
+	fd = open(file_path, O_RDONLY);
+	line = get_next_line(fd);
 	return map;
 }
 
