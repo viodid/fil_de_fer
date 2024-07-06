@@ -4,7 +4,6 @@ CODEDIRS=./
 
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -fPIE
-LDFLAGS=-pie
 
 CFILES=$(shell find $(CODEDIRS) -name '*.c')
 OBJECTS=$(CFILES:.c=.o)

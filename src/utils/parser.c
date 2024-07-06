@@ -6,81 +6,74 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/06 17:53:48 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 20:43:22 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-static int	line_len(const char *line);
+static int	get_map_width(const char* file_path);
+static	int	get_map_height(const char* file_path);
+static int**	matrix_allocation(int x, int y);
 
-int**	parser(int argc, const char *file_path)
+
+int	**parser(const char *file_path)
 {
-	int		fd;
-	char	*line;
-	int		**map;
+	int**	map;
 
-	fd = open(file_path, O_RDONLY);
-	line = get_next_line(fd);
-	map = malloc(sizeof(char) * ft_strlen(line));
-	if (!map)
-	{
-		errno = ENOMEM;
-		perror("Error message");
-		exit(EXIT_FAILURE);
-	}
-	while (line)
-	{
-		line = get_next_line(fd);
-	}
-	return map;
+	map = matrix_allocation(get_map_width(file_path), get_map_height(file_path));
+	return (map);
 }
 
-int	**parse_file_to_matrix(const char *file_path)
-{
-	int		fd;
-	int		**map;
-	int 	height;
-	char	*line;
 
-	fd = open(file_path, O_RDONLY);
-	line = get_next_line(fd);
-	int test_line_len = line_len(line);
-	map = (int **)malloc(sizeof(int *) * line_len(line));
+static int**	matrix_allocation(int x, int y)
+{
+	int	i;
+	int**	map;
+
+	map = (int **)malloc(sizeof(int *) * x);
 	if (map == NULL)
 	{
 		errno = ENOMEM;
 		perror("Memory allocation");
 		exit(EXIT_FAILURE);
 	}
-	height = 0;
-	while (line)
+	i = 0;
+	while (!errno && i < x)
 	{
-		line = get_next_line(fd);
-		height++;
+		map[i] = (int *)malloc(sizeof(int) * y);
+		if (map[i] == NULL)
+			errno = ENOMEM;
+		i++;
 	}
-	if (close(fd))
+	if (errno)
 	{
-		perror("Close file error");
+		x = 0;
+		perror("Memory allocation error.");
+		while (map[x])
+			free(map[x++]);
+		free(map);
 		exit(EXIT_FAILURE);
 	}
-	fd = open(file_path, O_RDONLY);
-	line = get_next_line(fd);
-	return map;
+	return (map);
 }
 
 /*
- * Custom line length function. Returns the total number of 'items'
- * in the line. An item is any character divided by whitespace/s.
+ * Returns the total number of 'items' in the line.
+ * An item is any character divided by whitespace/s.
  * There is always items + 1 items in the line.
  */
-static int	line_len(const char *line)
+static int	get_map_width(const char* file_path)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
+	int		fd;
+	char*	line;
 
 	len = 0;
 	i = 0;
+	fd = open_file(file_path);
+	line = get_next_line(fd);
 	while (line[i])
 	{
 		if (line[i++] == ' ')
@@ -91,8 +84,27 @@ static int	line_len(const char *line)
 		}
 		i++;
 	}
+	close_file(fd);
 	if (len == 0)
 		return (0);
 	return (len + 1);
 }
 
+static	int	get_map_height(const char* file_path)
+{
+	int		y;
+	int		fd;
+	char*	line;
+
+	fd = open_file(file_path);
+	line = get_next_line(fd);
+	y = 1;
+	while (line)
+	{
+		if (line[0])
+			y++;
+		line = get_next_line(fd);
+	}
+	close_file(fd);
+	return (y);
+}
