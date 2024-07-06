@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/04 20:33:14 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 20:46:16 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char *argv[])
 		perror("Error message");
 		exit(EXIT_FAILURE);
 	}
-	map = parse_file_to_matrix(argv[1]);
+	map = parser(argv[1]);
 
 	// mlx_set_setting(MLX_MAXIMIZED, true);
 	// mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);

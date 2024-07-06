@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/06 20:43:22 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 21:04:39 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ static	int	get_map_height(const char* file_path);
 static int**	matrix_allocation(int x, int y);
 
 
-int	**parser(const char *file_path)
+/*
+ * Parses the map the points 'file_path' and returns a two dimensional array
+ * containing all the map elements.
+*/
+int**	parser(const char *file_path)
 {
 	int**	map;
 
@@ -26,6 +30,10 @@ int	**parser(const char *file_path)
 }
 
 
+/*
+ * Allocates enough memory to store all the elements in a 2 dimensional
+ * array denotated by x and y.
+*/
 static int**	matrix_allocation(int x, int y)
 {
 	int	i;
@@ -59,8 +67,9 @@ static int**	matrix_allocation(int x, int y)
 }
 
 /*
- * Returns the total number of 'items' in the line.
- * An item is any character divided by whitespace/s.
+ * Returns the total number of elements that exist in the first row
+ * of the map.
+ * An element is any character divided by whitespace/s.
  * There is always items + 1 items in the line.
  */
 static int	get_map_width(const char* file_path)
@@ -90,6 +99,9 @@ static int	get_map_width(const char* file_path)
 	return (len + 1);
 }
 
+/*
+ * Returns the height (y axis) of the input map file.
+*/
 static	int	get_map_height(const char* file_path)
 {
 	int		y;
@@ -98,7 +110,7 @@ static	int	get_map_height(const char* file_path)
 
 	fd = open_file(file_path);
 	line = get_next_line(fd);
-	y = 1;
+	y = 0;
 	while (line)
 	{
 		if (line[0])
