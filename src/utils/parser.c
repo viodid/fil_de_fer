@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/04 21:50:52 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 17:53:48 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	**parse_file_to_matrix(const char *file_path)
 	fd = open(file_path, O_RDONLY);
 	line = get_next_line(fd);
 	int test_line_len = line_len(line);
-	map = malloc(sizeof(char) * line_len(line));
-	if (!map)
+	map = (int **)malloc(sizeof(int *) * line_len(line));
+	if (map == NULL)
 	{
 		errno = ENOMEM;
 		perror("Memory allocation");
