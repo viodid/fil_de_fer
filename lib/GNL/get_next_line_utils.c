@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:53:31 by dyunta            #+#    #+#             */
-/*   Updated: 2023/02/19 19:19:43 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 18:57:25 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ size_t	list_len_check_nl(t_list *node, int check)
 	while (node)
 	{
 		i = 0;
-		while ((node->content)[i])
+		while (((char *)node->content)[i])
 		{
 			len++;
-			if ((node->content)[i++] == '\n')
+			if (((char *)node->content)[i++] == '\n')
 				return (len);
 		}
 		node = node->next;
@@ -67,7 +67,7 @@ void	free_list(t_list *node)
 	if (!node)
 		return ;
 	free_list(node->next);
-	if (*(node->content))
+	if (*((char *)node->content))
 		free(node->content);
 	free(node);
 }

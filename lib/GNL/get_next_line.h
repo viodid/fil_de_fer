@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 20:20:10 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/04 21:37:58 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 18:55:47 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "../libft/libft.h"
+
 
 char	*get_next_line(int fd);
 size_t	list_len_check_nl(t_list *node, int check);
 t_list	*create_and_append_node(char *content, t_list *header);
+char	*ft_strdup(const char *str);
 void	free_list(t_list *node);
 
 #endif

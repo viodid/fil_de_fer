@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:53:22 by dyunta            #+#    #+#             */
-/*   Updated: 2023/02/21 15:40:30 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/06 18:56:35 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -41,7 +41,6 @@ char	*get_next_line(int fd)
 		free_list(header);
 		return (NULL);
 	}
-
 	output = get_line_output(header);
 	header = rearrange_content(header);
 	return (output);
@@ -90,10 +89,10 @@ static char	*get_line_output(t_list *node)
 	while (node)
 	{
 		i = 0;
-		while ((node->content)[i])
+		while (((char *)node->content)[i])
 		{
-			*output++ = (node->content)[i];
-			if ((node->content)[i++] == '\n')
+			*output++ = ((char *)node->content)[i];
+			if (((char *)node->content)[i++] == '\n')
 				break ;
 		}
 		node = node->next;
@@ -115,9 +114,9 @@ static t_list	*rearrange_content(t_list *header)
 	while (node)
 	{
 		i = 0;
-		while ((node->content)[i])
+		while (((char *)node->content)[i])
 		{
-			if ((node->content)[i++] == '\n' && *(node->content + i))
+			if (((char *)node->content)[i++] == '\n' && *((char *)node->content + i))
 			{
 				new_list = create_and_append_node(node->content + i, NULL);
 				break ;
