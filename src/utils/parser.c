@@ -6,22 +6,21 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/08 19:17:41 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/09 20:48:49 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
 static int	get_map_width(const char* file_path);
-static	int	get_map_height(const char* file_path);
+int	get_map_height(const char* file_path);
 static int**	matrix_allocation(int x, int y);
-
 
 /*
  * Parses the map the points 'file_path' and returns a two dimensional array
  * containing all the map elements.
 */
-int**	parser(const char *file_path)
+int**	old_parser(const char *file_path)
 {
 	int**	map;
 	int		fd;
@@ -48,7 +47,6 @@ int**	parser(const char *file_path)
 	close_file(fd);
 	return (map);
 }
-
 
 /*
  * Allocates enough memory to store all the elements in a 2 dimensional
@@ -123,7 +121,7 @@ static int	get_map_width(const char* file_path)
 /*
  * Returns the height (y axis) of the input map file.
 */
-static	int	get_map_height(const char* file_path)
+int	get_map_height(const char* file_path)
 {
 	int		y;
 	int		fd;
@@ -136,6 +134,7 @@ static	int	get_map_height(const char* file_path)
 	{
 		if (line[0])
 			y++;
+		free(line);
 		line = get_next_line(fd);
 	}
 	close_file(fd);

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/06 20:46:16 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/09 20:34:51 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_hook(void* param);
 
 int	main(int argc, char *argv[])
 {
-	int	**map;
+	char	***map;
 
 	map = NULL;
 	args_sanitizer(argc, argv);
@@ -29,6 +29,7 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	map = parser(argv[1]);
+	free_map(map);
 
 	// mlx_set_setting(MLX_MAXIMIZED, true);
 	// mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
