@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/09 20:48:49 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:17:21 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_map_height(const char* file_path);
 static int**	matrix_allocation(int x, int y);
 
 /*
- * Parses the map the points 'file_path' and returns a two dimensional array
+ * Parses the map the points 'file_path' and returns a two-dimensional array
  * containing all the map elements.
 */
 int**	old_parser(const char *file_path)
@@ -49,8 +49,8 @@ int**	old_parser(const char *file_path)
 }
 
 /*
- * Allocates enough memory to store all the elements in a 2 dimensional
- * array denotated by x and y.
+ * Allocates enough memory to store all the elements in a 2-dimensional
+ * array denoted by x and y.
 */
 static int**	matrix_allocation(int x, int y)
 {
@@ -119,7 +119,7 @@ static int	get_map_width(const char* file_path)
 }
 
 /*
- * Returns the height (y axis) of the input map file.
+ * Returns the height (y-axis) of the input map file.
 */
 int	get_map_height(const char* file_path)
 {

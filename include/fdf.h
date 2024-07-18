@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/09 20:34:20 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:16:32 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <errno.h>
+
+typedef struct s_fdf
+{
+	int		height;
+	int		width;
+	char	***map;
+}	t_fdf;
 
 int		open_file(const char *file_pat);
 void    close_file(const int fd);
