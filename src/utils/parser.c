@@ -6,14 +6,12 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/18 18:17:21 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:33:01 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-static int	get_map_width(const char* file_path);
-int	get_map_height(const char* file_path);
 static int**	matrix_allocation(int x, int y);
 
 /*
@@ -91,7 +89,7 @@ static int**	matrix_allocation(int x, int y)
  * There is always items + 1 items in the line.
  * Elements are multiplied by 2 to allocate space for number and color.
  */
-static int	get_map_width(const char* file_path)
+int	get_map_width(const char* file_path)
 {
 	int		len;
 	int		i;
@@ -115,7 +113,7 @@ static int	get_map_width(const char* file_path)
 	close_file(fd);
 	if (len == 0)
 		return (0);
-	return ((len + 1) * 2);
+	return (len + 1);
 }
 
 /*

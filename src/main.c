@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/09 20:34:51 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:35:48 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ static void	ft_hook(void* param);
 
 int	main(int argc, char *argv[])
 {
-	char	***map;
+	t_fdf*	fdf_struct;
 
-	map = NULL;
+	fdf_struct = NULL;
 	args_sanitizer(argc, argv);
 	if (errno)
 	{
 		perror("Error message");
 		exit(EXIT_FAILURE);
 	}
-	map = parser(argv[1]);
+	// TODO: pyramid map gives 0 width size, check get_map_width func
+	fdf_struct = fdf_struct_generator(argv[1]);
 	free_map(map);
 
 	// mlx_set_setting(MLX_MAXIMIZED, true);
