@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/18 18:35:48 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/19 20:21:41 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ int	main(int argc, char *argv[])
 		perror("Error message");
 		exit(EXIT_FAILURE);
 	}
-	// TODO: pyramid map gives 0 width size, check get_map_width func
 	fdf_struct = fdf_struct_generator(argv[1]);
-	free_map(map);
 
 	// mlx_set_setting(MLX_MAXIMIZED, true);
 	// mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);

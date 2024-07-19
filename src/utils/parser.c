@@ -6,45 +6,12 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/18 18:33:01 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/19 20:21:02 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-static int**	matrix_allocation(int x, int y);
-
-/*
- * Parses the map the points 'file_path' and returns a two-dimensional array
- * containing all the map elements.
-*/
-int**	old_parser(const char *file_path)
-{
-	int**	map;
-	int		fd;
-	int		i;
-	int		j;
-	char*	line;
-
-	map = matrix_allocation(get_map_width(file_path), get_map_height(file_path));
-	fd = open_file(file_path);
-	line = get_next_line(fd);
-	i = 0;
-	while (line)
-	{
-		j = 0;
-		while(line[j])
-		{
-			map[i][j] = (int)line[j++];
-			if (line[j] != ' ')
-				map[i][j] = (int)line[i++];
-
-		}
-		line = get_next_line(fd);
-	}
-	close_file(fd);
-	return (map);
-}
 
 /*
  * Allocates enough memory to store all the elements in a 2-dimensional
@@ -84,36 +51,22 @@ static int**	matrix_allocation(int x, int y)
 
 /*
  * Returns the total number of elements that exist in the first row
- * of the map.
- * An element is any character divided by whitespace/s.
- * There is always items + 1 items in the line.
- * Elements are multiplied by 2 to allocate space for number and color.
+ * of a 2-dimensional array.
  */
-int	get_map_width(const char* file_path)
+int	get_map_width(char*** map)
 {
-	int		len;
-	int		i;
-	int		fd;
-	char*	line;
+	int	i;
+	int len;
 
-	len = 0;
 	i = 0;
-	fd = open_file(file_path);
-	line = get_next_line(fd);
-	while (line[i])
+	len = 0;
+	while (map[0][i])
 	{
-		if (line[i++] == ' ')
-		{
+		if (map[0][i][0] != '\n')
 			len++;
-			while (line[i++] == ' ')
-				i++;
-		}
 		i++;
 	}
-	close_file(fd);
-	if (len == 0)
-		return (0);
-	return (len + 1);
+	return (len);
 }
 
 /*
