@@ -6,12 +6,15 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/20 17:43:06 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/20 19:36:18 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+#define WIDTH 256
+#define HEIGHT 256
 
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../lib/libft/libft.h"
@@ -43,5 +46,6 @@ int		get_map_width(char*** map);
 char***	parser(const char* file_path);
 t_fdf*	fdf_struct_generator(const char *file_path);
 void	free_map(char*** map);
+void	draw_map();
 
 #endif

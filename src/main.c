@@ -6,13 +6,11 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/19 20:21:41 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/20 19:36:26 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-#define WIDTH 256
-#define HEIGHT 256
 
 static void	ft_error(void);
 static void	ft_hook(void* param);
@@ -29,6 +27,8 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	fdf_struct = fdf_struct_generator(argv[1]);
+
+	draw_map();
 
 	// mlx_set_setting(MLX_MAXIMIZED, true);
 	// mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);

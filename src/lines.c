@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/20 19:15:33 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/20 19:35:57 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,39 @@
 
 static void	big_slope(int dx, int dy, t_point* a);
 static void	small_slope(int dx, int dy, t_point* a);
+static void	draw_line(t_point* a, t_point* b);
+
+void draw_map()
+{
+	int x;
+	int y;
+	t_point* a;
+	t_point* b;
+
+	a = (t_point*) malloc(sizeof(t_point));
+	b = (t_point*) malloc(sizeof(t_point));
+	a->x = 0;
+	while (a->x < WIDTH)
+	{
+		a->y = 0;
+		b->x = a->x + 1;
+		while (a->y < HEIGHT)
+		{
+			a->y = a->y + 1;
+			draw_line(a, b);
+			a->y++;
+		}
+		a->x++;
+	}
+	free(a);
+	free(b);
+}
 
 /*
  * var dx and dy represents de difference between x2 - x1 and y2 - 1
  * respectively.
  */
-void	draw_line(t_point* a, t_point* b)
+static void	draw_line(t_point* a, t_point* b)
 {
 	int	dx;
 	int dy;
