@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/19 19:51:11 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/20 17:43:06 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct s_fdf
 	int		width;
 	char***	map;
 }	t_fdf;
+
+typedef struct s_point
+{
+	int	x;
+	int y;
+} t_point;
 
 int		open_file(const char *file_pat);
 void    close_file(const int fd);
