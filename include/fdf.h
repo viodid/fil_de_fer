@@ -32,6 +32,7 @@ typedef struct s_point
 {
 	int	x;
 	int y;
+	int z;
 } t_point;
 
 int		open_file(const char *file_pat);

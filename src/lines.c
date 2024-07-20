@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/20 19:10:44 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/20 19:15:33 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,24 @@ static void	small_slope(int dx, int dy, t_point* a)
 	int	p;
 	int i;
 
-	p = 2 * dy - dx;
+	p = 2 * abs(dy) - abs(dx);
 	i = 0;
 	put_pixel(a->x, a->y);
-	while (i < dx)
+	while (i < abs(dx))
 	{
-		a->x++;
+		if (dx > 0)
+			a->x++;
+		else
+			a->x--;
 		if (p < 0)
-			p += 2 * dy;
+			p += 2 * abs(dy);
 		else
 		{
-			p += 2 * dy - 2 * dx;
-			a->y++;
+			p += 2 * abs(dy) - 2 * abs(dx);
+			if (dy > 0)
+				a->y++;
+			else
+				a->y--;
 		}
 		put_pixel(a->x, a->y);
 		i++;
@@ -69,18 +75,24 @@ static void	big_slope(int dx, int dy, t_point* a)
 	int	p;
 	int i;
 
-	p = 2 * dx - dy;
+	p = 2 * abs(dx) - abs(dy);
 	i = 0;
 	put_pixel(a->x, a->y);
-	while (i < dx)
+	while (i < abs(dy))
 	{
-		a->y++;
+		if (dx > 0)
+			a->y++;
+		else
+			a->y--;
 		if (p < 0)
-			p += 2 * dx;
+			p += 2 * abs(dx);
 		else
 		{
-			p += 2 * dx - 2 * dy;
-			a->x++;
+			p += 2 * abs(dx) - 2 * abs(dy);
+			if (dy > 0)
+				a->x++;
+			else
+				a->x--;
 		}
 		put_pixel(a->x, a->y);
 		i++;
