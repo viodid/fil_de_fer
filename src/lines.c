@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/20 20:16:04 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:48:44 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ static void	big_slope(int dx, int dy, t_point* a, mlx_image_t* img);
 static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img);
 static void	draw_line(t_point* a, t_point* b, mlx_image_t* img);
 
-void draw_map(mlx_image_t* img)
+void draw_map(mlx_image_t* img, t_fdf *map)
 {
-	int x;
-	int y;
 	t_point* a;
 	t_point* b;
 
 	a = (t_point*) malloc(sizeof(t_point));
 	b = (t_point*) malloc(sizeof(t_point));
 	a->x = 0;
-	while (a->x < WIDTH)
+	while (a->x < map->height)
 	{
 		a->y = 0;
-		b->x = a->x + 1;
-		while (a->y < HEIGHT)
+		while (a->y < map->width)
 		{
-			b->y = a->y + 1;
+			b->x = a->x + 1;
+			b->y = a->y;
+			draw_line(a, b, img);
+			b->y++;
 			draw_line(a, b, img);
 			a->y++;
 		}
@@ -72,13 +72,14 @@ static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 
 	p = 2 * abs(dy) - abs(dx);
 	i = 0;
+	// TODO: CREATE HELPER FUNCTION ft_put_pixel to add zoom, offset and isometric projection
 	mlx_put_pixel(img, a->x, a->y, 0xFFFFFF);
 	while (i < abs(dx))
 	{
 		if (dx > 0)
 			a->x++;
-		else
-			a->x--;
+//		else
+//			a->x--;
 		if (p < 0)
 			p += 2 * abs(dy);
 		else
@@ -110,8 +111,8 @@ static void	big_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 	{
 		if (dx > 0)
 			a->y++;
-		else
-			a->y--;
+//		else
+//			a->y--;
 		if (p < 0)
 			p += 2 * abs(dx);
 		else

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/20 20:15:02 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:22:25 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char *argv[])
 		perror("Error message");
 		exit(EXIT_FAILURE);
 	}
+
 	fdf_struct = fdf_struct_generator(argv[1]);
 
 
@@ -38,10 +39,12 @@ int	main(int argc, char *argv[])
 	 if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 	 	ft_error();
 
-//	mlx_put_pixel(img, 256, 256, 0xFFFFFF);
-	draw_map(img);
+//	 int i = 0;
+//	 while (i++ < 10)
+//		 mlx_put_pixel(img, i, 256, 0xFFFFFF);
+	draw_map(img, fdf_struct);
 
-	 mlx_loop_hook(mlx, ft_hook, mlx);
+//	 mlx_loop_hook(mlx, ft_hook, mlx);
 	 mlx_loop(mlx);
 	 mlx_terminate(mlx);
 
