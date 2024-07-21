@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/20 20:08:11 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:27:00 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #define WIDTH 2048
 #define HEIGHT 1024
+#define ZOOM 10
 
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../lib/libft/libft.h"
@@ -46,6 +47,6 @@ int		get_map_width(char*** map);
 char***	parser(const char* file_path);
 t_fdf*	fdf_struct_generator(const char *file_path);
 void	free_map(char*** map);
-void draw_map(mlx_image_t* img);
+void draw_map(mlx_image_t* img, t_fdf *map);
 
 #endif
