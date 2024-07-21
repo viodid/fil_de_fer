@@ -6,46 +6,50 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/19 20:21:02 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:46:13 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
+static char***	parser(const char* file_path);
+
+t_fdf*	fdf_struct_generator(const char *file_path)
+{
+	t_fdf*	fdf_struct;
+
+	fdf_struct = (t_fdf*)malloc(sizeof(t_fdf));
+	if (fdf_struct == NULL)
+		exit(EXIT_FAILURE);
+	fdf_struct->map = parser(file_path);
+	fdf_struct->height = get_map_height(file_path);
+	fdf_struct->width = get_map_width(fdf_struct->map);
+	return (fdf_struct);
+}
 
 /*
- * Allocates enough memory to store all the elements in a 2-dimensional
- * array denoted by x and y.
+ * TODO: write docstrings
 */
-static int**	matrix_allocation(int x, int y)
+static char***	parser(const char* file_path)
 {
-	int	i;
-	int**	map;
+	int		fd;
+	int		i;
+	char*	line;
+	char***	map;
 
-	map = (int **)malloc(sizeof(int *) * x);
+	map = (char ***)malloc(sizeof(char **) * (get_map_height(file_path) + 1));
 	if (map == NULL)
-	{
-		errno = ENOMEM;
-		perror("Memory allocation");
 		exit(EXIT_FAILURE);
-	}
+	fd = open_file(file_path);
+	line = get_next_line(fd);
 	i = 0;
-	while (!errno && i < x)
+	while (line)
 	{
-		map[i] = (int *)malloc(sizeof(int) * y);
-		if (map[i] == NULL)
-			errno = ENOMEM;
-		i++;
+		map[i++] = ft_split(line, ' ');
+		free(line);
+		line = get_next_line(fd);
 	}
-	if (errno)
-	{
-		x = 0;
-		perror("Memory allocation error.");
-		while (map[x])
-			free(map[x++]);
-		free(map);
-		exit(EXIT_FAILURE);
-	}
+	map[i] = NULL;
 	return (map);
 }
 
