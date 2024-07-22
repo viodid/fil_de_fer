@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/21 18:48:44 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/22 22:03:20 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void	draw_line(t_point* a, t_point* b, mlx_image_t* img)
  * Small slope means that slope m <= 1.
  * var p represents the slope error.
  * @param dx The difference between x2 - x1
+ * @param dy The difference between y2 - y1
  */
 static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 {
@@ -95,9 +96,11 @@ static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 	}
 }
 
-/*
+/**
  * big slope means that slope m > 1.
  * var p represents the slope error.
+ * @param dx The difference between x2 - x1
+ * @param dy The difference between y2 - y1
  */
 static void	big_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 {
