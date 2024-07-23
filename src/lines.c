@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/22 22:03:20 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/23 21:45:28 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 static void	big_slope(int dx, int dy, t_point* a, mlx_image_t* img);
 static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img);
 static void	draw_line(t_point* a, t_point* b, mlx_image_t* img);
+static void	ft_put_pixel(mlx_image_t* img, uint32_t x, uint32_t y, uint32_t color);
 
 void draw_map(mlx_image_t* img, t_fdf *map)
 {
@@ -34,6 +35,7 @@ void draw_map(mlx_image_t* img, t_fdf *map)
 			b->y = a->y;
 			draw_line(a, b, img);
 			b->y++;
+			b->x = a->x;
 			draw_line(a, b, img);
 			a->y++;
 		}
@@ -70,15 +72,18 @@ static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 {
 	int	p;
 	int i;
+	int x;
+	int y;
 
+	x = a->x;
+	y = a->y;
 	p = 2 * abs(dy) - abs(dx);
 	i = 0;
-	// TODO: CREATE HELPER FUNCTION ft_put_pixel to add zoom, offset and isometric projection
-	mlx_put_pixel(img, a->x, a->y, 0xFFFFFF);
+	ft_put_pixel(img, x, y, 0xFFFFFF);
 	while (i < abs(dx))
 	{
 		if (dx > 0)
-			a->x++;
+			x++;
 //		else
 //			a->x--;
 		if (p < 0)
@@ -87,11 +92,11 @@ static void	small_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 		{
 			p += 2 * abs(dy) - 2 * abs(dx);
 			if (dy > 0)
-				a->y++;
+				y++;
 			else
-				a->y--;
+				y--;
 		}
-		mlx_put_pixel(img, a->x, a->y, 0xFFFFFF);
+		mlx_put_pixel(img, x, y, 0xFFFFFF);
 		i++;
 	}
 }
@@ -106,14 +111,18 @@ static void	big_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 {
 	int	p;
 	int i;
+	int x;
+	int y;
 
+	x = a->x;
+	y = a->y;
 	p = 2 * abs(dx) - abs(dy);
 	i = 0;
-	mlx_put_pixel(img, a->x, a->y, 0xFFFFFF);
+	ft_put_pixel(img, x, y, 0xFFFFFF);
 	while (i < abs(dy))
 	{
 		if (dx > 0)
-			a->y++;
+			y++;
 //		else
 //			a->y--;
 		if (p < 0)
@@ -122,11 +131,21 @@ static void	big_slope(int dx, int dy, t_point* a, mlx_image_t* img)
 		{
 			p += 2 * abs(dx) - 2 * abs(dy);
 			if (dy > 0)
-				a->x++;
+				x++;
 			else
-				a->x--;
+				x--;
 		}
-		mlx_put_pixel(img, a->x, a->y, 0xFFFFFF);
+		mlx_put_pixel(img, x, y, 0xFFFFFF);
 		i++;
 	}
 }
+
+static void	ft_put_pixel(mlx_image_t* img, uint32_t x, uint32_t y, uint32_t color)
+{
+	x *= ZOOM;
+	x += WIDTH / 2;
+	y *= ZOOM;
+	y += HEIGHT / 2;
+	mlx_put_pixel(img, x, y, color);
+}
+

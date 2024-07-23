@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/21 18:28:30 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/23 21:49:36 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 #define WIDTH 2048
 #define HEIGHT 1024
+#ifndef ZOOM
 #define ZOOM 10
+#endif
 
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../lib/libft/libft.h"
