@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/23 22:10:57 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/23 22:16:07 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ static void	ft_put_pixel(mlx_image_t* img, t_point* p, uint32_t color)
 	x += WIDTH / 2;
 	y *= ZOOM;
 	y += HEIGHT / 2;
+	x = (int)((tmp - y) * cos(0.523599));
+	y = (int)((tmp + y) * sin(0.523599) - z);
 	mlx_put_pixel(img, x, y, color);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/23 21:49:36 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/23 22:13:50 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <errno.h>
+#include <math.h>
 
 typedef struct s_fdf
 {
