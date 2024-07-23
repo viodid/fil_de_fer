@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/23 21:57:52 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/23 22:10:57 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ void draw_map(mlx_image_t* img, t_fdf *map)
 			b->x = a->x + 1;
 			b->y = a->y;
 			draw_line(a, b, img);
-			b->y++;
+			a->x--;
 			b->x = a->x;
+			b->y++;
 			draw_line(a, b, img);
 			a->y++;
 		}
@@ -72,18 +73,18 @@ static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 {
 	int	e;
 	int i;
-	int x;
-	int y;
-
-	x = p->x;
-	y = p->y;
+//	int x;
+//	int y;
+//
+//	x = p->x;
+//	y = p->y;
 	e = 2 * abs(dy) - abs(dx);
 	i = 0;
 	ft_put_pixel(img, p, 0xFFFFFF);
 	while (i < abs(dx))
 	{
 		if (dx > 0)
-			x++;
+			p->x++;
 //		else
 //			p->x--;
 		if (e < 0)
@@ -92,9 +93,9 @@ static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 		{
 			e += 2 * abs(dy) - 2 * abs(dx);
 			if (dy > 0)
-				y++;
+				p->y++;
 			else
-				y--;
+				p->y--;
 		}
 		ft_put_pixel(img, p, 0xFFFFFF);
 		i++;
@@ -111,18 +112,18 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 {
 	int	e;
 	int i;
-	int x;
-	int y;
-
-	x = p->x;
-	y = p->y;
+//	int x;
+//	int y;
+//
+//	x = p->x;
+//	y = p->y;
 	e = 2 * abs(dx) - abs(dy);
 	i = 0;
-	ft_put_pixel(img, p, 0xFFFFFF);
+	ft_put_pixel(img, p, 0xFF00FF);
 	while (i < abs(dy))
 	{
 		if (dx > 0)
-			y++;
+			p->y++;
 //		else
 //			p->y--;
 		if (e < 0)
@@ -131,11 +132,11 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 		{
 			e += 2 * abs(dx) - 2 * abs(dy);
 			if (dy > 0)
-				x++;
+				p->x++;
 			else
-				x--;
+				p->x--;
 		}
-		ft_put_pixel(img, p, 0xFFFFFF);
+		ft_put_pixel(img, p, 0xFF00FF);
 		i++;
 	}
 }
