@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/23 21:56:10 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/23 21:57:52 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 	y = p->y;
 	e = 2 * abs(dy) - abs(dx);
 	i = 0;
-	ft_put_pixel(img, x, y, 0xFFFFFF);
+	ft_put_pixel(img, p, 0xFFFFFF);
 	while (i < abs(dx))
 	{
 		if (dx > 0)
 			x++;
 //		else
-//			a->x--;
+//			p->x--;
 		if (e < 0)
 			e += 2 * abs(dy);
 		else
@@ -96,7 +96,7 @@ static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 			else
 				y--;
 		}
-		mlx_put_pixel(img, x, y, 0xFFFFFF);
+		ft_put_pixel(img, p, 0xFFFFFF);
 		i++;
 	}
 }
@@ -118,7 +118,7 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 	y = p->y;
 	e = 2 * abs(dx) - abs(dy);
 	i = 0;
-	ft_put_pixel(img, x, y, 0xFFFFFF);
+	ft_put_pixel(img, p, 0xFFFFFF);
 	while (i < abs(dy))
 	{
 		if (dx > 0)
@@ -135,7 +135,7 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 			else
 				x--;
 		}
-		mlx_put_pixel(img, x, y, 0xFFFFFF);
+		ft_put_pixel(img, p, 0xFFFFFF);
 		i++;
 	}
 }
