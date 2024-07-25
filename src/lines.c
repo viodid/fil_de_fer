@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 13:15:35 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 13:30:08 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,29 @@ void	set_point(int x, int y, t_point* a, t_point* b)
 
 void draw_map(mlx_image_t* img, t_fdf *map)
 {
-	t_point*	a;
-	t_point*	b;
-	int			x;
-	int 		y;
+	t_point	a;
+	t_point	b;
+	int		x;
+	int 	y;
 
-	a = (t_point*) malloc(sizeof(t_point));
-	b = (t_point*) malloc(sizeof(t_point));
-	if (a == NULL || b == NULL)
-		exit(EXIT_FAILURE);
 	x = 0;
 	while (x < map->width)
 	{
 		y = 0;
 		while (y < map->height)
 		{
-			set_point(x, y, a, b);
-			b->x++;
+			set_point(x, y, &a, &b);
+			b.x++;
 			if (x + 1 < map->width)
-				draw_line(a, b, img);
-			set_point(x, y, a, b);
-			b->y++;
-			if (b->y + 1 < map->height)
-				draw_line(a, b, img);
+				draw_line(&a, &b, img);
+			set_point(x, y, &a, &b);
+			b.y++;
+			if (b.y + 1 < map->height)
+				draw_line(&a, &b, img);
 			y++;
 		}
 		x++;
 	}
-	free(a);
-	free(b);
 }
 
 /*
