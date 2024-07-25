@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/23 22:16:07 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 13:15:35 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,44 @@
 static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img);
 static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img);
 static void	draw_line(t_point* a, t_point* b, mlx_image_t* img);
-static void	ft_put_pixel(mlx_image_t* img, t_point* p, uint32_t color);
+static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color);
+
+void	set_point(int x, int y, t_point* a, t_point* b)
+{
+	a->x = x;
+	a->y = y;
+	b->x = x;
+	b->y = y;
+}
 
 void draw_map(mlx_image_t* img, t_fdf *map)
 {
-	t_point* a;
-	t_point* b;
+	t_point*	a;
+	t_point*	b;
+	int			x;
+	int 		y;
 
 	a = (t_point*) malloc(sizeof(t_point));
 	b = (t_point*) malloc(sizeof(t_point));
-	a->x = 0;
-	while (a->x < map->height)
+	if (a == NULL || b == NULL)
+		exit(EXIT_FAILURE);
+	x = 0;
+	while (x < map->width)
 	{
-		a->y = 0;
-		while (a->y < map->width)
+		y = 0;
+		while (y < map->height)
 		{
-			b->x = a->x + 1;
-			b->y = a->y;
-			draw_line(a, b, img);
-			a->x--;
-			b->x = a->x;
+			set_point(x, y, a, b);
+			b->x++;
+			if (x + 1 < map->width)
+				draw_line(a, b, img);
+			set_point(x, y, a, b);
 			b->y++;
-			draw_line(a, b, img);
-			a->y++;
+			if (b->y + 1 < map->height)
+				draw_line(a, b, img);
+			y++;
 		}
-		a->x++;
+		x++;
 	}
 	free(a);
 	free(b);
@@ -73,31 +86,31 @@ static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 {
 	int	e;
 	int i;
-//	int x;
-//	int y;
-//
-//	x = p->x;
-//	y = p->y;
+	int x;
+	int y;
+
+	x = p->x;
+	y = p->y;
 	e = 2 * abs(dy) - abs(dx);
 	i = 0;
-	ft_put_pixel(img, p, 0xFFFFFF);
+	ft_put_pixel(img, x, y, 0xFFFFFF);
 	while (i < abs(dx))
 	{
-		if (dx > 0)
-			p->x++;
-//		else
-//			p->x--;
+		if (dx >= 0)
+			x++;
+		else
+			x--;
 		if (e < 0)
 			e += 2 * abs(dy);
 		else
 		{
 			e += 2 * abs(dy) - 2 * abs(dx);
-			if (dy > 0)
-				p->y++;
+			if (dy >= 0)
+				y++;
 			else
-				p->y--;
+				y--;
 		}
-		ft_put_pixel(img, p, 0xFFFFFF);
+		ft_put_pixel(img, x, y, 0xFFFFFF);
 		i++;
 	}
 }
@@ -112,52 +125,46 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 {
 	int	e;
 	int i;
-//	int x;
-//	int y;
-//
-//	x = p->x;
-//	y = p->y;
+	int x;
+	int y;
+
+	x = p->x;
+	y = p->y;
 	e = 2 * abs(dx) - abs(dy);
 	i = 0;
-	ft_put_pixel(img, p, 0xFF00FF);
+	ft_put_pixel(img, x, y, 0xFF00FF);
 	while (i < abs(dy))
 	{
-		if (dx > 0)
-			p->y++;
-//		else
-//			p->y--;
+		if (dx >= 0)
+			y++;
+		else
+			y--;
 		if (e < 0)
 			e += 2 * abs(dx);
 		else
 		{
 			e += 2 * abs(dx) - 2 * abs(dy);
-			if (dy > 0)
-				p->x++;
+			if (dy >= 0)
+				x++;
 			else
-				p->x--;
+				x--;
 		}
-		ft_put_pixel(img, p, 0xFF00FF);
+		ft_put_pixel(img, x, y, 0xFF00FF);
 		i++;
 	}
 }
 
-static void	ft_put_pixel(mlx_image_t* img, t_point* p, uint32_t color)
+static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color)
 {
 	int tmp;
-	int x;
-	int y;
-	int	z;
 
-	tmp = p->x;
-	x = p->x;
-	y = p->y;
-	z = p->z;
-	x *= ZOOM;
+	tmp = x;
+//	x *= ZOOM;
 	x += WIDTH / 2;
-	y *= ZOOM;
+//	y *= ZOOM;
 	y += HEIGHT / 2;
-	x = (int)((tmp - y) * cos(0.523599));
-	y = (int)((tmp + y) * sin(0.523599) - z);
+//	x = (int)((tmp - y) * cos(0.523599));
+//	y = (int)((tmp + y) * sin(0.523599) - z);
 	mlx_put_pixel(img, x, y, color);
 }
 
