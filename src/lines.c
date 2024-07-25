@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 18:54:38 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 18:57:41 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,8 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img);
 static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img);
 static void	draw_line(t_point* a, t_point* b, mlx_image_t* img);
 static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color);
+static void	set_point(int x, int y, t_point* a, t_point* b);
 
-void	set_point(int x, int y, t_point* a, t_point* b)
-{
-	a->x = x;
-	a->y = y;
-	b->x = x;
-	b->y = y;
-}
 
 void draw_map(mlx_image_t* img, t_fdf *map)
 {
@@ -45,12 +39,20 @@ void draw_map(mlx_image_t* img, t_fdf *map)
 				draw_line(&a, &b, img);
 			set_point(x, y, &a, &b);
 			b.y++;
-			if (b.y + 1 < map->height)
+			if (y + 1 < map->height)
 				draw_line(&a, &b, img);
 			y++;
 		}
 		x++;
 	}
+}
+
+static void	set_point(int x, int y, t_point* a, t_point* b)
+{
+	a->x = x;
+	a->y = y;
+	b->x = x;
+	b->y = y;
 }
 
 /*
