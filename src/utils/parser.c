@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 19:31:38 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 19:34:14 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 static char***	parser(const char* file_path);
 
-t_fdf*	fdf_struct_generator(const char *file_path, t_fdf* fdf_struct)
+void	fdf_struct_generator(const char *file_path, t_fdf* fdf_struct)
 {
 	fdf_struct->map = parser(file_path);
 	fdf_struct->height = get_map_height(file_path);
 	fdf_struct->width = get_map_width(fdf_struct->map);
-	return (fdf_struct);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 19:25:54 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 20:31:19 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,33 @@ static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color);
 static void	set_point(int x, int y, t_point* a, t_point* b);
 
 
-void draw_map(mlx_image_t* img, t_fdf *map)
+void draw_map(mlx_image_t* img, t_fdf *fdf)
 {
 	t_point	a;
 	t_point	b;
 	int		x;
 	int 	y;
 
-	set_z_axis(&a, &b, map);
 	x = 0;
-	while (x < map->width)
+	while (x < fdf->width)
 	{
 		y = 0;
-		while (y < map->height)
+		while (y < fdf->height)
 		{
 			set_point(x, y, &a, &b);
 			b.x++;
-			if (x + 1 < map->width)
+			if (x + 1 < fdf->width)
+			{
+				set_z_axis(&a, &b, fdf);
 				draw_line(&a, &b, img);
+			}
 			set_point(x, y, &a, &b);
 			b.y++;
-			if (y + 1 < map->height)
+			if (y + 1 < fdf->height)
+			{
+				set_z_axis(&a, &b, fdf);
 				draw_line(&a, &b, img);
+			}
 			y++;
 		}
 		x++;
@@ -65,7 +70,7 @@ static void	draw_line(t_point* a, t_point* b, mlx_image_t* img)
 	int	dx;
 	int dy;
 
-	set_transformations(a, b);
+	apply_transformations(a, b);
 	dx = b->x - a->x;
 	dy = b->y - a->y;
 	printf("x1: %d - y1: %d | x2: %d - y2: %d | dx: %d - dy: %d\n", a->x, a->y, b->x, b->y, dx, dy);
@@ -160,8 +165,6 @@ static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color)
 	tmp = x;
 	x += WIDTH / 2;
 	y += HEIGHT / 2;
-//	x = (int)((tmp - y) * cos(0.523599));
-//	y = (int)((tmp + y) * sin(0.523599) - z);
 	mlx_put_pixel(img, x, y, color);
 }
 
