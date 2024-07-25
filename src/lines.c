@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 13:30:08 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 13:55:33 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ static void	draw_line(t_point* a, t_point* b, mlx_image_t* img)
 	int	dx;
 	int dy;
 
-	dx = b->x - a->x;
-	dy = b->y - a->y;
+	dx = (b->x * ZOOM) - a->x;
+	dy = (b->y * ZOOM) - a->y;
+	printf("x1: %d - y1: %d | x2: %d - y2: %d | dx: %d - dy: %d\n", a->x, a->y, b->x, b->y, dx, dy);
+	a->x *= ZOOM;
+	a->y *= ZOOM;
 	if (abs(dx) > abs(dy))
 		small_slope(dx, dy, a, img);
 	else
