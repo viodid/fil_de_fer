@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/21 18:22:25 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 19:31:52 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ static void	ft_hook(void* param);
 
 int	main(int argc, char *argv[])
 {
-	t_fdf*	fdf_struct;
+	t_fdf	fdf_struct;
 
-	fdf_struct = NULL;
 	args_sanitizer(argc, argv);
 	if (errno)
 	{
@@ -27,8 +26,7 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	fdf_struct = fdf_struct_generator(argv[1]);
-
+	fdf_struct_generator(argv[1], &fdf_struct);
 
 //	 mlx_set_setting(MLX_MAXIMIZED, true);
 	 mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
@@ -42,7 +40,7 @@ int	main(int argc, char *argv[])
 //	 int i = 0;
 //	 while (i++ < 10)
 //		 mlx_put_pixel(img, i, 256, 0xFFFFFF);
-	draw_map(img, fdf_struct);
+	draw_map(img, &fdf_struct);
 
 //	 mlx_loop_hook(mlx, ft_hook, mlx);
 	 mlx_loop(mlx);

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 18:57:41 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/25 19:25:54 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void draw_map(mlx_image_t* img, t_fdf *map)
 	int		x;
 	int 	y;
 
+	set_z_axis(&a, &b, map);
 	x = 0;
 	while (x < map->width)
 	{
@@ -64,10 +65,7 @@ static void	draw_line(t_point* a, t_point* b, mlx_image_t* img)
 	int	dx;
 	int dy;
 
-	a->x *= ZOOM;
-	a->y *= ZOOM;
-	b->x *= ZOOM;
-	b->y *= ZOOM;
+	set_transformations(a, b);
 	dx = b->x - a->x;
 	dy = b->y - a->y;
 	printf("x1: %d - y1: %d | x2: %d - y2: %d | dx: %d - dy: %d\n", a->x, a->y, b->x, b->y, dx, dy);
