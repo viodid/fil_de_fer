@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/26 21:39:09 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/26 22:48:43 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	set_z_axis(t_point* a, t_point* b, t_fdf* fdf)
 	split = ft_split(map[y][x], ',');
 	b->z = ft_atoi(split[0]);
 	free_split(split);
+	printf("x1: %d - y1: %d - z1: %d || x2: %d - y2: %d - z2: %d\n", a->x, a->y, a->z, b->x, b->y, b->z);
 }
 
 static void	free_split(char** split)
