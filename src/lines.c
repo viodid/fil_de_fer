@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 20:31:19 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/26 21:00:35 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static void	draw_line(t_point* a, t_point* b, mlx_image_t* img)
 	apply_transformations(a, b);
 	dx = b->x - a->x;
 	dy = b->y - a->y;
-	printf("x1: %d - y1: %d | x2: %d - y2: %d | dx: %d - dy: %d\n", a->x, a->y, b->x, b->y, dx, dy);
 	if (abs(dx) > abs(dy))
 		small_slope(dx, dy, a, img);
 	else

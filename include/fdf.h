@@ -6,17 +6,17 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 20:37:48 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/26 21:31:41 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#define WIDTH 2048
+#define WIDTH 3000
 #define HEIGHT 1024
 #ifndef ZOOM
-#define ZOOM 20
+#define ZOOM 10
 #endif
 
 #include "../MLX42/include/MLX42/MLX42.h"

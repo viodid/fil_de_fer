@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 20:33:31 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/26 21:39:09 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	apply_transformations(t_point* a, t_point* b)
 	a->x *= ZOOM;
 	a->y *= ZOOM;
 	a->z *= ZOOM;
+
 	b->x *= ZOOM;
 	b->y *= ZOOM;
 	b->z *= ZOOM;
