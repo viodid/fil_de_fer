@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 12:27:40 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 14:26:21 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,21 @@ typedef struct s_fdf
 {
 	int		height;
 	int		width;
+	int 	z_max;
+	int 	z_min;
 	char***	map;
 }	t_fdf;
+
+typedef struct s_map
+{
+	char***	map;
+};
 
 typedef struct s_point
 {
 	int	x;
-	int y;
-	int z;
+	int	y;
+	int	z;
 } t_point;
 
 /*
@@ -47,7 +54,7 @@ typedef struct s_point
  */
 int		get_map_height(const char* file_path);
 int		get_map_width(char*** map);
-void	fdf_struct_generator(const char *file_path, t_fdf* fdf_struct);
+void	fdf_init(const char *file_path, t_fdf* fdf);
 void	free_map(char*** map);
 
 /*
@@ -66,7 +73,6 @@ void	draw_map(mlx_image_t* img, t_fdf *fdf);
  * Isometric projection transformations.
  */
 t_point apply_transformations(int x, int y, t_fdf *fdf);
-int get_z_axis(int x, int y, char ***map);
 
 
 #endif

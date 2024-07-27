@@ -3,28 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
+/*   Updated: 2024/07/27 14:20:50 by dyunta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_constructor.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 19:34:14 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 14:19:25 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-static char***	parser(const char* file_path);
+static char***	map_constructor(const char* file_path);
 
-void	fdf_struct_generator(const char *file_path, t_fdf* fdf_struct)
+void	fdf_init(const char *file_path, t_fdf* fdf)
 {
-	fdf_struct->map = parser(file_path);
-	fdf_struct->height = get_map_height(file_path);
-	fdf_struct->width = get_map_width(fdf_struct->map);
+	fdf->map = map_constructor(file_path);
+	fdf->height = get_map_height(file_path);
+	fdf->width = get_map_width(fdf->map);
+	fdf->z_max
 }
 
 /*
  * TODO: write docstrings
 */
-static char***	parser(const char* file_path)
+static char***	map_constructor(const char* file_path)
 {
 	int		fd;
 	int		i;
