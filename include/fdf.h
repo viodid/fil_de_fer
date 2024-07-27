@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:26:21 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 14:53:22 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@
 #include <errno.h>
 #include <math.h>
 
-typedef struct s_fdf
-{
-	int		height;
-	int		width;
-	int 	z_max;
-	int 	z_min;
-	char***	map;
-}	t_fdf;
-
-typedef struct s_map
-{
-	char***	map;
-};
-
 typedef struct s_point
 {
 	int	x;
@@ -49,12 +35,29 @@ typedef struct s_point
 	int	z;
 } t_point;
 
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	int		z_max;
+	int		z_min;
+	char***	arr;
+}	t_map;
+
+typedef struct s_fdf
+{
+	void*	mlx;
+	void*	img;
+	t_map*	map;
+}	t_fdf;
+
 /*
  * Map utils.
  */
+void	map_init(const char *file_path, t_map* map);
+void	fdf_init(t_map* map, t_fdf* fdf);
 int		get_map_height(const char* file_path);
 int		get_map_width(char*** map);
-void	fdf_init(const char *file_path, t_fdf* fdf);
 void	free_map(char*** map);
 
 /*

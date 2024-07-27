@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:18:55 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 14:56:46 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	ft_hook(void* param);
 int	main(int argc, char *argv[])
 {
 	t_fdf	fdf;
+	t_map	map;
 
 	args_sanitizer(argc, argv);
 	if (errno)
@@ -26,31 +27,25 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	fdf_init(argv[1], &fdf);
+	map_init(argv[1], &map);
+	fdf_init(&map, &fdf);
 
 //	 mlx_set_setting(MLX_MAXIMIZED, true);
-	 mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
-	 if (!mlx)
-	 	ft_error();
+	 fdf.mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
 
-	 mlx_image_t*	img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	 if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-	 	ft_error();
-
-	draw_map(img, &fdf);
+	draw_map(fdf.img, &fdf);
 
 //	 mlx_loop_hook(mlx, ft_hook, mlx);
-	 mlx_loop(mlx);
-	 mlx_terminate(mlx);
-	free_map(fdf.map);
+	 mlx_loop(fdf.mlx);
+	 mlx_terminate(fdf.mlx);
+	free_map(map.arr);
+	free(fdf.map);
 
 	return (EXIT_SUCCESS);
 }
 
 static void	ft_error(void)
 {
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
 }
 
 static void	ft_hook(void* param)

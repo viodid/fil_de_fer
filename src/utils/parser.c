@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:20:50 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 14:54:50 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,28 @@
 
 static char***	map_constructor(const char* file_path);
 
-void	fdf_init(const char *file_path, t_fdf* fdf)
+void	map_init(const char *file_path, t_map* map)
 {
-	fdf->map = map_constructor(file_path);
-	fdf->height = get_map_height(file_path);
-	fdf->width = get_map_width(fdf->map);
-	fdf->z_max
+	map->arr = map_constructor(file_path);
+	map->height = get_map_height(file_path);
+	map->width = get_map_width(map->arr);
+}
+
+void	fdf_init(t_map* map, t_fdf* fdf)
+{
+	fdf->map = map;
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	if (!fdf->mlx)
+	{
+		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+		exit(EXIT_FAILURE);
+	}
+	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	if (!fdf->img || (mlx_image_to_window(fdf->mlx, fdf->img, 0, 0) < 0))
+	{
+		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+		exit(EXIT_FAILURE);
+	}
 }
 
 /*
