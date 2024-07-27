@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/26 22:33:10 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:55:58 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 
 static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img);
 static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img);
-static void	draw_line(t_point* a, t_point* b, mlx_image_t* img);
+static void	draw_line(t_point a, t_point b, mlx_image_t* img);
 static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color);
 static void	set_point(int x, int y, t_point* a, t_point* b);
 
 
 void draw_map(mlx_image_t* img, t_fdf *fdf)
 {
-	t_point	a;
-	t_point	b;
 	int		x;
 	int 	y;
 
@@ -33,19 +31,19 @@ void draw_map(mlx_image_t* img, t_fdf *fdf)
 		y = 0;
 		while (y < fdf->height)
 		{
-			set_point(x, y, &a, &b);
-			b.x++;
+//			set_point(x, y, &a, &b);
+//			x++;
 			if (x + 1 < fdf->width)
 			{
-				set_z_axis(&a, &b, fdf);
-				draw_line(&a, &b, img);
+//				get_z_axis(&a, &b, fdf);
+				draw_line(apply_transformations(x, y, fdf), apply_transformations(x + 1, y, fdf), img);
 			}
-			set_point(x, y, &a, &b);
-			b.y++;
+//			set_point(x, y, &a, &b);
+//			y++;
 			if (y + 1 < fdf->height)
 			{
-				set_z_axis(&a, &b, fdf);
-				draw_line(&a, &b, img);
+//				get_z_axis(&a, &b, fdf);
+				draw_line(apply_transformations(x, y, fdf), apply_transformations(x, y + 1, fdf), img);
 			}
 			y++;
 		}
@@ -65,18 +63,17 @@ static void	set_point(int x, int y, t_point* a, t_point* b)
  * var dx and dy represents de difference between x2 - x1 and y2 - 1
  * respectively.
  */
-static void	draw_line(t_point* a, t_point* b, mlx_image_t* img)
+static void	draw_line(t_point a, t_point b, mlx_image_t* img)
 {
 	int	dx;
 	int dy;
 
-	apply_transformations(a, b);
-	dx = b->x - a->x;
-	dy = b->y - a->y;
+	dx = b.x - a.x;
+	dy = b.y - a.y;
 	if (abs(dx) > abs(dy))
-		small_slope(dx, dy, a, img);
+		small_slope(dx, dy, &a, img);
 	else
-		big_slope(dx, dy, a, img);
+		big_slope(dx, dy, &a, img);
 }
 
 /**

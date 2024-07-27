@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/25 19:35:03 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:09:40 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ int	main(int argc, char *argv[])
 	 if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 	 	ft_error();
 
-//	 int i = 0;
-//	 while (i++ < 10)
-//		 mlx_put_pixel(img, i, 256, 0xFFFFFF);
 	draw_map(img, &fdf);
 
 //	 mlx_loop_hook(mlx, ft_hook, mlx);

@@ -26,7 +26,7 @@ int    open_file(const char *file_path)
     return (fd);
 }
 
-void    close_file(const int fd)
+void    close_file(int fd)
 {
     int    result;
 

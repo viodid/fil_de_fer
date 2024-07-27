@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/26 22:48:43 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 13:01:49 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,27 @@
 
 static void	free_split(char** split);
 
-void	apply_transformations(t_point* a, t_point* b)
+t_point apply_transformations(int x, int y, t_fdf *fdf)
 {
 	int tmp;
+	t_point point;
 
-	a->x *= ZOOM;
-	a->y *= ZOOM;
-	a->z *= ZOOM;
+	point.x = x * ZOOM;
+	point.y = y * ZOOM;
+	point.z = get_z_axis(x, y, fdf->map) * ZOOM;
 
-	b->x *= ZOOM;
-	b->y *= ZOOM;
-	b->z *= ZOOM;
-
-	tmp = a->x;
-	a->x = (int)((tmp - a->y) * cos(0.523599));
-	a->y = (int)((tmp + a->y) * sin(0.523599) - a->z);
-
-	tmp = b->x;
-	b->x = (int)((tmp - b->y) * cos(0.523599));
-	b->y = (int)((tmp + b->y) * sin(0.523599) - b->z);
+	return (point);
 }
 
-void	set_z_axis(t_point* a, t_point* b, t_fdf* fdf)
+int get_z_axis(int x, int y, char ***map)
 {
-	char***	map;
-	int 	x;
-	int 	y;
+	int 	z;
 	char**	split;
 
-	map = fdf->map;
-	x = a->x;
-	y = a->y;
 	split = ft_split(map[y][x], ',');
-	a->z = ft_atoi(split[0]);
+	z = ft_atoi(split[0]);
 	free_split(split);
-	x = b->x;
-	y = b->y;
-	split = ft_split(map[y][x], ',');
-	b->z = ft_atoi(split[0]);
-	free_split(split);
-	printf("x1: %d - y1: %d - z1: %d || x2: %d - y2: %d - z2: %d\n", a->x, a->y, a->z, b->x, b->y, b->z);
+	return (z);
 }
 
 static void	free_split(char** split)
