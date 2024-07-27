@@ -79,7 +79,7 @@ static int get_z_axis(int x, int y, char ***map)
 	return (z);
 }
 
-static void	free_split(char** split)
+void	free_split(char** split)
 {
 	int i;
 

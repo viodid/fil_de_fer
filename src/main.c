@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:56:46 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 19:21:36 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
+	// TODO: check if map init is correctly implemented
 	map_init(argv[1], &map);
 	fdf_init(&map, &fdf);
 

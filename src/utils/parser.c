@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:54:50 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/27 19:20:33 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,42 @@
 
 static char***	map_constructor(const char* file_path);
 
+void	set_max_min_z(t_map* map)
+{
+	char***	arr;
+	char**	tmp;
+	int 	x;
+	int 	y;
+
+	arr = map->arr;
+	tmp = ft_split(arr[0][0], ',');
+	map->z_max = ft_atoi(tmp[0]);
+	map->z_min = map->z_max;
+	free_split(tmp);
+	x = 0;
+	y = 0;
+	while(arr[y])
+	{
+		while(arr[y][x])
+		{
+			tmp = ft_split(arr[y][x], ',');
+			if (ft_atoi(tmp[0]) > map->z_max)
+				map->z_max = ft_atoi(tmp[0]);
+			else if (ft_atoi(tmp[0]) < map->z_min)
+				map->z_min = ft_atoi(tmp[0]);
+			free_split(tmp);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	map_init(const char *file_path, t_map* map)
 {
 	map->arr = map_constructor(file_path);
 	map->height = get_map_height(file_path);
 	map->width = get_map_width(map->arr);
+	set_max_min_z(map);
 }
 
 void	fdf_init(t_map* map, t_fdf* fdf)

@@ -66,6 +66,7 @@ void	free_map(char*** map);
 void	args_sanitizer(int argc, char *argv[]);
 int		open_file(const char *file_pat);
 void    close_file(int fd);
+void	free_split(char** split);
 
 /*
  * Bresenham's .
