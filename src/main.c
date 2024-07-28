@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 18:24:07 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:35:56 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char *argv[])
 	}
 
 	map_init(argv[1], &map);
-	projection_init(&projection, &fdf);
 	fdf_init(&map, &fdf);
+	projection_init(&projection, &fdf);
 
 //	 mlx_set_setting(MLX_MAXIMIZED, true);
 

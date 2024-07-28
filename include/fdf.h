@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 18:32:57 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:41:54 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ typedef struct s_projection
 
 typedef struct s_map
 {
-	int				width;
-	int				height;
-	int				z_max;
-	int				z_min;
-	char***			arr;
-	t_projection*	projection;
+	int		width;
+	int		height;
+	int		z_max;
+	int		z_min;
+	char***	arr;
 }	t_map;
 
 typedef struct s_fdf
 {
-	void*	mlx;
-	void*	img;
-	t_map*	map;
+	void*			mlx;
+	void*			img;
+	t_map*			map;
+	t_projection*	projection;
 }	t_fdf;
 
 /*

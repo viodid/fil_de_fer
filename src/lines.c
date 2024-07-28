@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 16:18:14 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:42:05 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,12 @@ void	draw_map(t_fdf *fdf)
 		y = 0;
 		while (y < fdf->map->height)
 		{
-//			set_point(x, y, &a, &b);
-//			x++;
 			if (x + 1 < fdf->map->width)
 			{
-//				get_z_axis(&a, &b, fdf);
 				draw_line(apply_transformations(x, y, fdf), apply_transformations(x + 1, y, fdf), fdf->img);
 			}
-//			set_point(x, y, &a, &b);
-//			y++;
 			if (y + 1 < fdf->map->height)
 			{
-//				get_z_axis(&a, &b, fdf);
 				draw_line(apply_transformations(x, y, fdf), apply_transformations(x, y + 1, fdf), fdf->img);
 			}
 			y++;
