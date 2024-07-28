@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:53:22 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 16:16:15 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	free_split(char** split);
 /*
  * Bresenham's .
  */
-void	draw_map(mlx_image_t* img, t_fdf *fdf);
+void	draw_map(t_fdf *fdf);
 
 /*
  * Isometric projection transformations.

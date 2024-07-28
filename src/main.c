@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 19:21:36 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:11:31 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,20 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	// TODO: check if map init is correctly implemented
 	map_init(argv[1], &map);
 	fdf_init(&map, &fdf);
 
 //	 mlx_set_setting(MLX_MAXIMIZED, true);
 	 fdf.mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
 
-	draw_map(fdf.img, &fdf);
+	draw_map(&fdf);
 
 //	 mlx_loop_hook(mlx, ft_hook, mlx);
-	 mlx_loop(fdf.mlx);
-	 mlx_terminate(fdf.mlx);
+	mlx_loop(fdf.mlx);
+	mlx_terminate(fdf.mlx);
 	free_map(map.arr);
-	free(fdf.map);
 
 	return (EXIT_SUCCESS);
-}
-
-static void	ft_error(void)
-{
 }
 
 static void	ft_hook(void* param)

@@ -6,13 +6,12 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 13:42:31 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 16:19:59 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-static void	free_split(char** split);
 static int get_z_axis(int x, int y, char ***map);
 static void	rotate_x(int* y, int* z);
 static void	rotate_y(int* x, int* z);
@@ -24,7 +23,7 @@ t_point apply_transformations(int x, int y, t_fdf *fdf)
 
 	point.x = x * ZOOM;
 	point.y = y * ZOOM;
-	point.z = get_z_axis(x, y, fdf->map) * ZOOM;
+	point.z = get_z_axis(x, y, fdf->map->arr) * ZOOM;
 
 	rotate_x(&point.y, &point.z);
 	rotate_y(&point.x, &point.z);

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:32:37 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 16:18:14 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,30 @@ static void	draw_line(t_point a, t_point b, mlx_image_t* img);
 static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color);
 
 
-void	draw_map(mlx_image_t* img, t_fdf *fdf)
+void	draw_map(t_fdf *fdf)
 {
 	int		x;
 	int 	y;
 
 	x = 0;
-	while (x < fdf->width)
+	while (x < fdf->map->width)
 	{
 		y = 0;
-		while (y < fdf->height)
+		while (y < fdf->map->height)
 		{
 //			set_point(x, y, &a, &b);
 //			x++;
-			if (x + 1 < fdf->width)
+			if (x + 1 < fdf->map->width)
 			{
 //				get_z_axis(&a, &b, fdf);
-				draw_line(apply_transformations(x, y, fdf), apply_transformations(x + 1, y, fdf), img);
+				draw_line(apply_transformations(x, y, fdf), apply_transformations(x + 1, y, fdf), fdf->img);
 			}
 //			set_point(x, y, &a, &b);
 //			y++;
-			if (y + 1 < fdf->height)
+			if (y + 1 < fdf->map->height)
 			{
 //				get_z_axis(&a, &b, fdf);
-				draw_line(apply_transformations(x, y, fdf), apply_transformations(x, y + 1, fdf), img);
+				draw_line(apply_transformations(x, y, fdf), apply_transformations(x, y + 1, fdf), fdf->img);
 			}
 			y++;
 		}

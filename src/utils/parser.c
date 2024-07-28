@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 19:20:33 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 16:43:13 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	set_max_min_z(t_map* map)
 	map->z_max = ft_atoi(tmp[0]);
 	map->z_min = map->z_max;
 	free_split(tmp);
-	x = 0;
 	y = 0;
 	while(arr[y])
 	{
+		x = 0;
 		while(arr[y][x])
 		{
 			tmp = ft_split(arr[y][x], ',');
