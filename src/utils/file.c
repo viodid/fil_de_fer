@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:51:33 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/06 20:03:17 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 20:23:51 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int    open_file(const char *file_path)
     fd = open(file_path, O_RDONLY);
     if (fd == -1)
     {
-        errno = EBADFD;
         perror("open file error");
         exit(EXIT_FAILURE);
     }

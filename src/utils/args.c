@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_constructor.c                                           :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/21 18:38:39 by dyunta           ###   ########.fr       */
+/*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
+/*   Updated: 2024/07/28 20:40:42 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ void	args_sanitizer(int argc, char *argv[])
 	if (file_path[path_len - 1] != 'f' || file_path[path_len - 2] != 'd'
 		|| file_path[path_len - 3] != 'f')
 		errno = ENOENT;
+	if (get_next_line(open_file(file_path)) == NULL)
+	{
+		ft_putstr_fd("Empty file\n", 2);
+		exit(EXIT_FAILURE);
+	}
 }
