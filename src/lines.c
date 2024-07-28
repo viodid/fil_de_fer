@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 18:42:05 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 19:01:08 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@ void	draw_map(t_fdf *fdf)
 	int		x;
 	int 	y;
 
-	x = 0;
-	while (x < fdf->map->width)
+	y = 0;
+	if (fdf->projection->x_angle > 0)
+		y = fdf->map->height - 1;
+	while (y < fdf->map->height && y >= 0)
 	{
-		y = 0;
-		while (y < fdf->map->height)
+		x = 0;
+		if (fdf->projection->y_angle > 0)
+			x = fdf->map->width - 1;
+		while (x < fdf->map->width && x >= 0)
 		{
 			if (x + 1 < fdf->map->width)
-			{
 				draw_line(apply_transformations(x, y, fdf), apply_transformations(x + 1, y, fdf), fdf->img);
-			}
 			if (y + 1 < fdf->map->height)
-			{
 				draw_line(apply_transformations(x, y, fdf), apply_transformations(x, y + 1, fdf), fdf->img);
-			}
-			y++;
+			x += -2 * (fdf->projection->x_angle > 0) + 1;
 		}
-		x++;
+		y += -2 * (fdf->projection->x_angle > 0) + 1;
 	}
 }
 
