@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 18:30:15 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:32:57 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_fdf
 /*
  * Map utils.
  */
+void	projection_init(t_projection* projection, t_fdf* fdf);
 void	map_init(const char *file_path, t_map* map);
 void	fdf_init(t_map* map, t_fdf* fdf);
 int		get_map_height(const char* file_path);
