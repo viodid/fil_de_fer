@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 19:53:54 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 20:11:40 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_point apply_transformations(int x, int y, t_fdf *fdf)
 	point.z = get_z_axis(x, y, fdf->map->arr);
 	point.z *= fdf->projection->zoom / fdf->projection->z_height;
 
-	point.x = (fdf->map->width * fdf->projection->zoom) / 2;
-	point.y = (fdf->map->height * fdf->projection->zoom) / 2;
+	point.x -= (fdf->map->width * fdf->projection->zoom) / 2;
+	point.y -= (fdf->map->height * fdf->projection->zoom) / 2;
 
-//	rotate_x(&point.y, &point.z);
-//	rotate_y(&point.x, &point.z);
+	rotate_x(&point.y, &point.z);
+	rotate_y(&point.x, &point.z);
 //	rotate_z(&point.x, &point.y);
 
 	point.x += WIDTH / 2 + fdf->projection->x_offset;
