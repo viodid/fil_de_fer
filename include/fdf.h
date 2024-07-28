@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 16:16:15 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:04:21 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,26 @@ typedef struct s_point
 	int	z;
 } t_point;
 
+typedef struct s_projection
+{
+	int		zoom;
+	double 	x_angle;
+	double 	y_angle;
+	double 	z_angle;
+	float 	z_height;
+	int 	x_offset;
+	int 	y_offset;
+	int 	isometric;
+}	t_projection;
+
 typedef struct s_map
 {
-	int		width;
-	int		height;
-	int		z_max;
-	int		z_min;
-	char***	arr;
+	int				width;
+	int				height;
+	int				z_max;
+	int				z_min;
+	char***			arr;
+	t_projection*	projection;
 }	t_map;
 
 typedef struct s_fdf
