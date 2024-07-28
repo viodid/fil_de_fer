@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 17:11:31 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:41:14 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char *argv[])
 	fdf_init(&map, &fdf);
 
 //	 mlx_set_setting(MLX_MAXIMIZED, true);
-	 fdf.mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
 
 	draw_map(&fdf);
 

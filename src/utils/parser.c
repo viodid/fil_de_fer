@@ -6,27 +6,47 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 16:43:13 by dyunta           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_constructor.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 15:27:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/27 14:19:25 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:46:19 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
 static char***	map_constructor(const char* file_path);
+static void	set_max_min_z(t_map* map);
 
-void	set_max_min_z(t_map* map)
+
+void	map_init(const char *file_path, t_map* map)
+{
+	map->arr = map_constructor(file_path);
+	map->height = get_map_height(file_path);
+	map->width = get_map_width(map->arr);
+	set_max_min_z(map);
+}
+
+void	fdf_init(t_map* map, t_fdf* fdf)
+{
+	fdf->map = map;
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	if (!fdf->mlx)
+	{
+		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+		exit(EXIT_FAILURE);
+	}
+	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	if (!fdf->img || (mlx_image_to_window(fdf->mlx, fdf->img, 0, 0) < 0))
+	{
+		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+ * Iterates over 3-dimensional array pointed by map->arr and sets its
+ * maximum and minimum z values to the corresponding variable in the struct t_map.
+ * @param map The pointer to the struct that holds the 3-dimensional array
+ */
+static void	set_max_min_z(t_map* map)
 {
 	char***	arr;
 	char**	tmp;
@@ -53,31 +73,6 @@ void	set_max_min_z(t_map* map)
 			x++;
 		}
 		y++;
-	}
-}
-
-void	map_init(const char *file_path, t_map* map)
-{
-	map->arr = map_constructor(file_path);
-	map->height = get_map_height(file_path);
-	map->width = get_map_width(map->arr);
-	set_max_min_z(map);
-}
-
-void	fdf_init(t_map* map, t_fdf* fdf)
-{
-	fdf->map = map;
-	fdf->mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
-	if (!fdf->mlx)
-	{
-		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-		exit(EXIT_FAILURE);
-	}
-	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	if (!fdf->img || (mlx_image_to_window(fdf->mlx, fdf->img, 0, 0) < 0))
-	{
-		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-		exit(EXIT_FAILURE);
 	}
 }
 

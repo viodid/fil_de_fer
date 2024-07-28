@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 16:19:59 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:13:58 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_point apply_transformations(int x, int y, t_fdf *fdf)
 	point.y = y * ZOOM;
 	point.z = get_z_axis(x, y, fdf->map->arr) * ZOOM;
 
-	rotate_x(&point.y, &point.z);
-	rotate_y(&point.x, &point.z);
+//	rotate_x(&point.y, &point.z);
+//	rotate_y(&point.x, &point.z);
 //	rotate_z(&point.x, &point.y);
 
 	return (point);
