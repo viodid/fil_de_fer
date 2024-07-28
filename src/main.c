@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 17:41:14 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:24:07 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static void	ft_hook(void* param);
 
 int	main(int argc, char *argv[])
 {
-	t_fdf	fdf;
-	t_map	map;
+	t_fdf			fdf;
+	t_map			map;
+	t_projection	projection;
 
 	args_sanitizer(argc, argv);
 	if (errno)
@@ -28,6 +29,7 @@ int	main(int argc, char *argv[])
 	}
 
 	map_init(argv[1], &map);
+	projection_init(&projection, &fdf);
 	fdf_init(&map, &fdf);
 
 //	 mlx_set_setting(MLX_MAXIMIZED, true);
