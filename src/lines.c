@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 19:01:08 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/28 19:50:52 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	draw_line(t_point a, t_point b, mlx_image_t* img)
 {
 	int	dx;
 	int dy;
+
 
 	dx = b.x - a.x;
 	dy = b.y - a.y;
@@ -141,8 +142,6 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 
 static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color)
 {
-	x += WIDTH / 2;
-	y += HEIGHT / 2;
 	mlx_put_pixel(img, x, y, color);
 }
 
