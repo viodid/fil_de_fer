@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 20:35:24 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/07/29 20:09:09 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	map_init(const char *file_path, t_map* map)
 void	fdf_init(t_map* map, t_projection* projection, t_fdf* fdf)
 {
 	fdf->map = map;
-	fdf->mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, "FdF", true);
 	if (!fdf->mlx)
 	{
-		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+		ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 		exit(EXIT_FAILURE);
 	}
 	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 	if (!fdf->img || (mlx_image_to_window(fdf->mlx, fdf->img, 0, 0) < 0))
 	{
-		fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+		ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 		exit(EXIT_FAILURE);
 	}
 	fdf->projection = projection;
