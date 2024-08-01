@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 23:09:25 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/01 23:19:16 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	projection_init(t_projection* projection, t_map* map)
 	projection->x_offset =  WIDTH / 2;
 	projection->y_offset = HEIGHT / 2;
 	projection->zoom = 1;
-	projection->z_scale = 1;
+	projection->z_scale = 3;
 	projection->high = INT_MIN;
 	projection->low = INT_MAX;
 	projection->interval = get_min_value(WIDTH / map->width, HEIGHT / map->height) / 2;

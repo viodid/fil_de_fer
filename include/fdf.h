@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 23:08:46 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/01 23:13:18 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
-	double	z;
+	int	x;
+	int	y;
+	int	z;
 } t_point;
 
 typedef struct s_projection
