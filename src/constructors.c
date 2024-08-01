@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/29 20:20:04 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/01 23:09:25 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	projection_init(t_projection* projection, t_map* map)
 	projection->z_scale = 1;
 	projection->high = INT_MIN;
 	projection->low = INT_MAX;
+	projection->interval = get_min_value(WIDTH / map->width, HEIGHT / map->height) / 2;
+	projection->interval = get_max_value(2, (int)projection->interval);
 }
 
 void	map_init(const char *file_path, t_map* map)

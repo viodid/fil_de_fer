@@ -6,15 +6,15 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/29 20:18:25 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/01 23:08:46 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#define WIDTH 2048
-#define HEIGHT 1024
+#define WIDTH 1920
+#define HEIGHT 1080
 
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../lib/libft/libft.h"
@@ -27,16 +27,16 @@
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	double	x;
+	double	y;
+	double	z;
 } t_point;
 
 typedef struct s_projection
 {
-	int		zoom;
 	double 	alpha;
 	double 	beta;
+	double	interval;
 	double	x_rotate;
 	double	y_rotate;
 	double	z_rotate;
@@ -45,6 +45,7 @@ typedef struct s_projection
 	int 	y_offset;
 	int 	high;
 	int 	low;
+	int		zoom;
 }	t_projection;
 
 typedef struct s_map
@@ -74,6 +75,8 @@ int		get_map_height(const char* file_path);
 int		get_map_width(char*** map);
 void	free_map(char*** map);
 void	set_max_min_z(t_map* map);
+int		get_min_value(double a, double b);
+int		get_max_value(int a, int b);
 
 /*
  * Other utils.
@@ -82,7 +85,6 @@ void	args_sanitizer(int argc, char *argv[]);
 int		open_file(const char *file_pat);
 void    close_file(int fd);
 void	free_split(char** split);
-int		get_min_value(int a, int b);
 
 /*
  * Bresenham's .

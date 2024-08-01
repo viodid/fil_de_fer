@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/29 18:26:54 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/01 22:59:07 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,27 @@ static void	rotate_z(int* x, int* y, double z_angle);
 t_point apply_transformations(int x, int y, t_fdf *fdf)
 {
 	t_point point;
+	int		temp;
+	int		x_offset;
+	int 	y_offset;
 
-	point.x = x * fdf->projection->zoom;
-	point.y = y * fdf->projection->zoom;
-	point.z = get_z_axis(x, y, fdf->map->arr);
-	point.z *= fdf->projection->zoom / fdf->projection->z_height;
 
-	point.x -= (fdf->map->width * fdf->projection->zoom) / 2;
-	point.y -= (fdf->map->height * fdf->projection->zoom) / 2;
+	x_offset = (fdf->map->width - 1) * fdf->projection->interval / 2;
+	y_offset = (fdf->map->height - 1) * fdf->projection->interval / 2;
+	point.x = x * (fdf->projection->interval) - x_offset;
+	point.y = y * (fdf->projection->interval) - y_offset;
+	point.z = get_z_axis(x, y, fdf->map->arr) * (int)fdf->projection->z_scale;
 
-	rotate_x(&point.y, &point.z, fdf->projection->x_angle);
-	rotate_y(&point.x, &point.z, fdf->projection->y_angle);
-	rotate_z(&point.x, &point.y, fdf->projection->z_angle);
+	rotate_z(&point.x, &point.y, fdf->projection->z_rotate);
+	rotate_x(&point.y, &point.z, fdf->projection->x_rotate);
+	rotate_y(&point.x, &point.z, fdf->projection->y_rotate);
 
-	point.x += WIDTH / 2 + fdf->projection->x_offset;
-	point.y += (HEIGHT + fdf->map->height / 2 * fdf->projection->zoom) / 2
-			+ fdf->projection->y_offset;
+	temp = point.x;
+	point.x = (int)((point.x * fdf->projection->zoom - point.y * fdf->projection->zoom)
+			* cos(fdf->projection->alpha) + fdf->projection->x_offset);
+
+	point.y = (int)(-point.z * fdf->projection->zoom + (temp * fdf->projection->zoom + point.y * fdf->projection->zoom)
+					* sin(fdf->projection->beta) + fdf->projection->y_offset);
 
 	return (point);
 }
@@ -63,7 +68,7 @@ static void	rotate_z(int* x, int* y, double z_angle)
 	int 	tmp_x;
 	int 	tmp_y;
 
-	tmp_x = *y;
+	tmp_x = *x;
 	tmp_y = *y;
 	*x = tmp_x * cos(z_angle) - tmp_y * sin(z_angle);
 	*y = tmp_x * sin(z_angle) + tmp_y * cos(z_angle);

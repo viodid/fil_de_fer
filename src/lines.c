@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/29 18:29:35 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/01 21:33:18 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,22 @@ void	draw_map(t_fdf *fdf)
 {
 	int		x;
 	int 	y;
+	t_point	point_a;
 
 	y = 0;
-	if (fdf->projection->x_angle > 0)
-		y = fdf->map->height - 1;
 	while (y < fdf->map->height && y >= 0)
 	{
 		x = 0;
-		if (fdf->projection->y_angle > 0)
-			x = fdf->map->width - 1;
 		while (x < fdf->map->width && x >= 0)
 		{
+			point_a = apply_transformations(x, y, fdf);
 			if (x + 1 < fdf->map->width)
-				draw_line(apply_transformations(x, y, fdf), apply_transformations(x + 1, y, fdf), fdf->img);
+				draw_line(point_a, apply_transformations(x + 1, y, fdf), fdf->img);
 			if (y + 1 < fdf->map->height)
-				draw_line(apply_transformations(x, y, fdf), apply_transformations(x, y + 1, fdf), fdf->img);
-			x += -2 * (fdf->projection->x_angle > 0) + 1;
+				draw_line(point_a, apply_transformations(x, y + 1, fdf), fdf->img);
+			x++;
 		}
-		y += -2 * (fdf->projection->x_angle > 0) + 1;
+		y++;
 	}
 }
 
