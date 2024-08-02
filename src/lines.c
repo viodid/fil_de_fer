@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 23:17:54 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 21:42:14 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 
 static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color)
 {
-	mlx_put_pixel(img, x, y, color);
+	if (y < 0 || x < 0)
+		return ;
+	if (x < WIDTH && y < HEIGHT)
+		mlx_put_pixel(img, (uint32_t)x, (uint32_t)y, color);
 }
-

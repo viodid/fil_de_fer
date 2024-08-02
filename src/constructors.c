@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 23:19:16 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 20:58:31 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static char***	map_constructor(const char* file_path);
 
 void	projection_init(t_projection* projection, t_map* map)
 {
-	projection->alpha = 0.46373398 / 2;
-	projection->beta = 0.46373398;
+	projection->alpha = 0.8 / 2;
+	projection->beta = 0.8;
 	projection->x_rotate = 0;
 	projection->y_rotate = 0;
 	projection->z_rotate = 0;
 	projection->x_offset =  WIDTH / 2;
 	projection->y_offset = HEIGHT / 2;
 	projection->zoom = 1;
-	projection->z_scale = 3;
+	projection->z_scale = 4;
 	projection->high = INT_MIN;
 	projection->low = INT_MAX;
 	projection->interval = get_min_value(WIDTH / map->width, HEIGHT / map->height) / 2;

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 22:59:07 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 20:30:38 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_point apply_transformations(int x, int y, t_fdf *fdf)
 {
 	t_point point;
 	int		temp;
-	int		x_offset;
-	int 	y_offset;
+	double	x_offset;
+	double	y_offset;
 
 
 	x_offset = (fdf->map->width - 1) * fdf->projection->interval / 2;

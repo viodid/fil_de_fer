@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 23:07:17 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 20:28:45 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	set_max_min_z(t_map* map)
 	}
 }
 
-int	get_min_value(double a, double b)
+double 	get_min_value(double a, double b)
 {
 	if (a <= b)
 		return (a);
 	return (b);
 }
 
-int	get_max_value(int a, int b)
+double 	get_max_value(double a, double b)
 {
 	if (a >= b)
 		return (a);

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/01 23:13:18 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 20:28:39 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int		get_map_height(const char* file_path);
 int		get_map_width(char*** map);
 void	free_map(char*** map);
 void	set_max_min_z(t_map* map);
-int		get_min_value(double a, double b);
-int		get_max_value(int a, int b);
+double 	get_min_value(double a, double b);
+double 	get_max_value(double a, double b);
 
 /*
  * Other utils.
