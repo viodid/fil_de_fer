@@ -6,23 +6,21 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 21:42:14 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 22:12:01 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/fdf.h"
 
-static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img);
-static void	small_slope(int dx, int dy, t_point* p, mlx_image_t* img);
-static void	draw_line(t_point a, t_point b, mlx_image_t* img);
-static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color);
-
+static void	big_slope(int dx, int dy, t_point *p, mlx_image_t *img);
+static void	small_slope(int dx, int dy, t_point *p, mlx_image_t *img);
+static void	draw_line(t_point a, t_point b, mlx_image_t *img);
+static void	ft_put_pixel(mlx_image_t *img, int x, int y, uint32_t color);
 
 void	draw_map(t_fdf *fdf)
 {
 	int		x;
-	int 	y;
+	int		y;
 	t_point	point_a;
 
 	y = 0;
@@ -33,9 +31,11 @@ void	draw_map(t_fdf *fdf)
 		{
 			point_a = apply_transformations(x, y, fdf);
 			if (x + 1 < fdf->map->width)
-				draw_line(point_a, apply_transformations(x + 1, y, fdf), fdf->img);
+				draw_line(point_a,
+					apply_transformations(x + 1, y, fdf), fdf->img);
 			if (y + 1 < fdf->map->height)
-				draw_line(point_a, apply_transformations(x, y + 1, fdf), fdf->img);
+				draw_line(point_a,
+					apply_transformations(x, y + 1, fdf), fdf->img);
 			x++;
 		}
 		y++;
@@ -46,11 +46,10 @@ void	draw_map(t_fdf *fdf)
  * var dx and dy represents de difference between x2 - x1 and y2 - 1
  * respectively.
  */
-static void	draw_line(t_point a, t_point b, mlx_image_t* img)
+static void	draw_line(t_point a, t_point b, mlx_image_t *img)
 {
 	int	dx;
 	int dy;
-
 
 	dx = b.x - a.x;
 	dy = b.y - a.y;

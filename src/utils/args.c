@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 20:51:45 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 22:12:55 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	args_sanitizer(int argc, char *argv[])
 	if (argc != 2)
 	{
 		ft_putstr_fd("Wrong number of arguments\n"
-					 "Usage: ./fdf [map.fdf]\n", 2);
+			"Usage: ./fdf [map.fdf]\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	file_path = argv[1];
