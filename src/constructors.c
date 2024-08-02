@@ -6,32 +6,33 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 20:58:31 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 22:08:30 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static char***	map_constructor(const char* file_path);
+static char	***map_constructor(const char *file_path);
 
-void	projection_init(t_projection* projection, t_map* map)
+void	projection_init(t_projection *projection, t_map *map)
 {
 	projection->alpha = 0.8 / 2;
 	projection->beta = 0.8;
 	projection->x_rotate = 0;
 	projection->y_rotate = 0;
 	projection->z_rotate = 0;
-	projection->x_offset =  WIDTH / 2;
+	projection->x_offset = WIDTH / 2;
 	projection->y_offset = HEIGHT / 2;
 	projection->zoom = 1;
 	projection->z_scale = 4;
 	projection->high = INT_MIN;
 	projection->low = INT_MAX;
-	projection->interval = get_min_value(WIDTH / map->width, HEIGHT / map->height) / 2;
+	projection->interval = get_min_value(WIDTH / map->width,
+			HEIGHT / map->height) / 2;
 	projection->interval = get_max_value(2, (int)projection->interval);
 }
 
-void	map_init(const char *file_path, t_map* map)
+void	map_init(const char *file_path, t_map *map)
 {
 	map->arr = map_constructor(file_path);
 	map->height = get_map_height(file_path);
@@ -39,7 +40,7 @@ void	map_init(const char *file_path, t_map* map)
 	set_max_min_z(map);
 }
 
-void	fdf_init(t_map* map, t_projection* projection, t_fdf* fdf)
+void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
 {
 	fdf->map = map;
 	fdf->mlx = mlx_init(WIDTH, HEIGHT, "FdF", true);
@@ -60,12 +61,12 @@ void	fdf_init(t_map* map, t_projection* projection, t_fdf* fdf)
 /*
  * TODO: write docstrings
 */
-static char***	map_constructor(const char* file_path)
+static char	***map_constructor(const char *file_path)
 {
 	int		fd;
 	int		i;
-	char*	line;
-	char***	map;
+	char	*line;
+	char	***map;
 
 	map = (char ***)malloc(sizeof(char **) * (get_map_height(file_path) + 1));
 	if (map == NULL)

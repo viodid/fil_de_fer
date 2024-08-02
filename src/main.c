@@ -6,14 +6,14 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/28 19:07:37 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/02 22:02:44 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 static void	ft_error(void);
-static void	ft_hook(void* param);
+static void	ft_hook(void *param);
 
 int	main(int argc, char *argv[])
 {
