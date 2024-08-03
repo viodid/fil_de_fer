@@ -35,10 +35,10 @@ void	projection_init(t_projection *projection, t_map *map)
 
 void	map_init(const char *file_path, t_map *map)
 {
-	map->map = map_constructor(file_path);
+	map->map_points = map_constructor(file_path);
 	map->height = get_map_height(file_path);
-//	map->width = get_map_width(map->map);
-//	set_max_min_z(map);
+//	map_points->width = get_map_width(map_points->map_points);
+//	set_max_min_z(map_points);
 }
 
 void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)

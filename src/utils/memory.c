@@ -18,7 +18,7 @@ void	free_map(t_map *map)
 	int	y;
 	int	x;
 
-	map_points = map->map;
+	map_points = map->map_points;
 	y = 0;
 	x = 0;
 	while (y < map->height)
@@ -26,7 +26,7 @@ void	free_map(t_map *map)
 		free(map_points[y]);
 		y++;
 	}
-	free(map->map);
+	free(map->map_points);
 }
 
 void	free_split(char **split)

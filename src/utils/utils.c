@@ -13,7 +13,7 @@
 #include "../../include/fdf.h"
 
 /**
- * Iterates over 3-dimensional array pointed by map->arr and sets its
+ * Iterates over 3-dimensional array pointed by map_points->arr and sets its
  * maximum and minimum z values to the corresponding variable in the struct t_map.
  * These values are used to set a premise from which to create the color gradient.
  * @param map The pointer to the struct that holds the 3-dimensional array
@@ -25,7 +25,7 @@ void	set_max_min_z(t_map* map)
 	int 	x;
 	int 	y;
 
-	arr = map->map;
+	arr = map->map_points;
 	tmp = ft_split(arr[0][0], ',');
 	map->z_max = ft_atoi(tmp[0]);
 	map->z_min = map->z_max;
@@ -84,7 +84,7 @@ int	get_map_width(char** row_map)
 }
 
 /*
- * Returns the height (y-axis) of the input map file.
+ * Returns the height (y-axis) of the input map_points file.
 */
 int	get_map_height(const char* file_path)
 {

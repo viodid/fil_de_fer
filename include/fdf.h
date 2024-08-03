@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 19:56:50 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:03:17 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_map
 	int			height;
 	int			z_max;
 	int			z_min;
-	t_point**	map;
+	t_point**	map_points;
 }	t_map;
 
 typedef struct s_fdf

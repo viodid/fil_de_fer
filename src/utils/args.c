@@ -21,7 +21,7 @@ void	args_sanitizer(int argc, char *argv[])
 	if (argc != 2)
 	{
 		ft_putstr_fd("Wrong number of arguments\n"
-			"Usage: ./fdf [map.fdf]\n", 2);
+			"Usage: ./fdf [map_points.fdf]\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	file_path = argv[1];
