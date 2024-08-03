@@ -6,14 +6,14 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 20:00:16 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:13:08 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 static t_point**	map_constructor(const char *file_path);
-static t_point	*construct_points(char **row_map, t_point *row_points, int y);
+static t_point	*construct_points(char **row_map, t_point *row_points, int y, const char *file_path);
 
 void	projection_init(t_projection *projection, t_map *map)
 {
@@ -37,8 +37,8 @@ void	map_init(const char *file_path, t_map *map)
 {
 	map->map_points = map_constructor(file_path);
 	map->height = get_map_height(file_path);
-//	map_points->width = get_map_width(map_points->map_points);
-//	set_max_min_z(map_points);
+	map->width = get_map_width(map->map_points);
+	set_max_min_z(map);
 }
 
 void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
@@ -79,7 +79,7 @@ static t_point**	map_constructor(const char *file_path)
 	while (line)
 	{
 		split = ft_split(line, ' ');
-		map[y] = construct_points(split, map[y], y);
+		map[y] = construct_points(split, map[y], y, file_path);
 		free(line);
 		line = get_next_line(fd);
 		y++;
@@ -89,7 +89,7 @@ static t_point**	map_constructor(const char *file_path)
 
 static int	ft_atoi_hex(char *str);
 
-static t_point	*construct_points(char **row_map, t_point *row_points, int y)
+static t_point	*construct_points(char **row_map, t_point *row_points, int y, const char *file_path)
 {
 	char	**split;
 	int		x;

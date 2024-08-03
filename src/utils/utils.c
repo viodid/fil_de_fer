@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 19:09:01 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:15:57 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,26 @@ double 	get_max_value(double a, double b)
  * Returns the total number of elements that exist in the first row
  * of a 2-dimensional array.
  */
-int	get_map_width(char** row_map)
+int	get_map_width(const char *file_path)
 {
-	int	i;
-	int len;
+	int		i;
+	int		len;
+	int		fd;
+	char	*line;
+	char 	**split;
 
+	fd = open_file(file_path);
+	line = get_next_line(fd);
+	split = ft_split(line, ' ');
 	i = 0;
 	len = 0;
-	while (row_map[i])
+	while (split[i])
 	{
-		if (row_map[i][0] != '\n')
+		if (split[i][0] != '\n')
 			len++;
 		i++;
 	}
+	free_split(split);
 	return (len);
 }
 

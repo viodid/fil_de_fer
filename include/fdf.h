@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 20:03:17 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:13:25 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	projection_init(t_projection* projection, t_map* map);
 void	map_init(const char *file_path, t_map* map);
 void	fdf_init(t_map* map, t_projection* projection, t_fdf* fdf);
 int		get_map_height(const char* file_path);
-int		get_map_width(char** row_map);
+int		get_map_width(const char *file_path);
 void	free_map(t_map *map);
 void	set_max_min_z(t_map* map);
 double 	get_min_value(double a, double b);
