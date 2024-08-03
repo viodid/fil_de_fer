@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 20:15:57 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:32:09 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,24 @@
  */
 void	set_max_min_z(t_map* map)
 {
-	char***	arr;
 	char**	tmp;
 	int 	x;
 	int 	y;
+	int 	curr;
 
-	arr = map->map_points;
-	tmp = ft_split(arr[0][0], ',');
-	map->z_max = ft_atoi(tmp[0]);
+	map->z_max = map->map_points[0][0].z;
 	map->z_min = map->z_max;
-	free_split(tmp);
 	y = 0;
-	while(arr[y])
+	while(y < map->height)
 	{
 		x = 0;
-		while(arr[y][x])
+		while(x < map->width)
 		{
-			tmp = ft_split(arr[y][x], ',');
-			if (ft_atoi(tmp[0]) > map->z_max)
-				map->z_max = ft_atoi(tmp[0]);
-			else if (ft_atoi(tmp[0]) < map->z_min)
-				map->z_min = ft_atoi(tmp[0]);
-			free_split(tmp);
+			curr = map->map_points[y][x].z;
+			if (curr > map->z_max)
+				map->z_max = curr;
+			else if (curr < map->z_min)
+				map->z_min = curr;
 			x++;
 		}
 		y++;

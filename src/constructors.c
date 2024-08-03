@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 20:13:08 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:16:39 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	map_init(const char *file_path, t_map *map)
 {
 	map->map_points = map_constructor(file_path);
 	map->height = get_map_height(file_path);
-	map->width = get_map_width(map->map_points);
+	map->width = get_map_width(file_path);
 	set_max_min_z(map);
 }
 
@@ -94,7 +94,7 @@ static t_point	*construct_points(char **row_map, t_point *row_points, int y, con
 	char	**split;
 	int		x;
 
-	row_points = (t_point *) malloc(sizeof(t_point) * get_map_width(row_map));
+	row_points = (t_point *) malloc(sizeof(t_point) * get_map_width(file_path));
 	if (row_points == NULL)
 		exit(EXIT_FAILURE);
 	x = 0;
