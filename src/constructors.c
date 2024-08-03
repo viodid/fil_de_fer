@@ -6,13 +6,14 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 22:08:30 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:00:16 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static char	***map_constructor(const char *file_path);
+static t_point**	map_constructor(const char *file_path);
+static t_point	*construct_points(char **row_map, t_point *row_points, int y);
 
 void	projection_init(t_projection *projection, t_map *map)
 {
@@ -34,10 +35,10 @@ void	projection_init(t_projection *projection, t_map *map)
 
 void	map_init(const char *file_path, t_map *map)
 {
-	map->arr = map_constructor(file_path);
+	map->map = map_constructor(file_path);
 	map->height = get_map_height(file_path);
-	map->width = get_map_width(map->arr);
-	set_max_min_z(map);
+//	map->width = get_map_width(map->map);
+//	set_max_min_z(map);
 }
 
 void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
@@ -61,25 +62,80 @@ void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
 /*
  * TODO: write docstrings
 */
-static char	***map_constructor(const char *file_path)
+static t_point**	map_constructor(const char *file_path)
 {
 	int		fd;
-	int		i;
+	int		y;
 	char	*line;
-	char	***map;
+	char 	**split;
+	t_point	**map;
 
-	map = (char ***)malloc(sizeof(char **) * (get_map_height(file_path) + 1));
+	map = (t_point **)malloc(sizeof(t_point *) * (get_map_height(file_path)));
 	if (map == NULL)
 		exit(EXIT_FAILURE);
 	fd = open_file(file_path);
 	line = get_next_line(fd);
-	i = 0;
+	y = 0;
 	while (line)
 	{
-		map[i++] = ft_split(line, ' ');
+		split = ft_split(line, ' ');
+		map[y] = construct_points(split, map[y], y);
 		free(line);
 		line = get_next_line(fd);
+		y++;
 	}
-	map[i] = NULL;
 	return (map);
+}
+
+static int	ft_atoi_hex(char *str);
+
+static t_point	*construct_points(char **row_map, t_point *row_points, int y)
+{
+	char	**split;
+	int		x;
+
+	row_points = (t_point *) malloc(sizeof(t_point) * get_map_width(row_map));
+	if (row_points == NULL)
+		exit(EXIT_FAILURE);
+	x = 0;
+	while (row_map[x])
+	{
+		split = ft_split(row_map[x], ',');
+		row_points[x].x = x;
+		row_points[x].y = y;
+		row_points[x].z = ft_atoi(split[0]);
+		if (split[1] != NULL)
+			row_points[x].color = ft_atoi_hex(split[1]);
+		else
+			row_points[x].color = -1;
+		free_split(split);
+		x++;
+	}
+	return (row_points);
+}
+
+static int	ft_atoi_hex(char *str)
+{
+	int		output;
+	char	*hex;
+	int 	i;
+	int 	offset;
+
+	output = 0;
+	offset = 0;
+	hex = "0123456789abcdef";
+	if (ft_strncmp(str, "0x", 3) != 0)
+		offset = 2;
+	while (str[offset])
+	{
+		i = 0;
+		while (hex[i])
+		{
+			if (hex[i] == str[offset])
+				output = (output * 16) + i;
+			i++;
+		}
+		offset++;
+	}
+	return (output);
 }

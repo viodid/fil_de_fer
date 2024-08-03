@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 22:12:01 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 11:53:06 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ static void	big_slope(int dx, int dy, t_point* p, mlx_image_t* img)
 			else
 				x--;
 		}
-		ft_put_pixel(img, x, y, 0xFF00FF);
+		ft_put_pixel(img, x, y, -1);
 		i++;
 	}
 }

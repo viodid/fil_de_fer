@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 20:28:39 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:56:50 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_point
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 } t_point;
 
 typedef struct s_projection
@@ -50,11 +51,11 @@ typedef struct s_projection
 
 typedef struct s_map
 {
-	int		width;
-	int		height;
-	int		z_max;
-	int		z_min;
-	char***	arr;
+	int			width;
+	int			height;
+	int			z_max;
+	int			z_min;
+	t_point**	map;
 }	t_map;
 
 typedef struct s_fdf
@@ -72,8 +73,8 @@ void	projection_init(t_projection* projection, t_map* map);
 void	map_init(const char *file_path, t_map* map);
 void	fdf_init(t_map* map, t_projection* projection, t_fdf* fdf);
 int		get_map_height(const char* file_path);
-int		get_map_width(char*** map);
-void	free_map(char*** map);
+int		get_map_width(char** row_map);
+void	free_map(t_map *map);
 void	set_max_min_z(t_map* map);
 double 	get_min_value(double a, double b);
 double 	get_max_value(double a, double b);

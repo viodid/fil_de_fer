@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 22:02:44 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:57:06 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char *argv[])
 //	 mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
-	free_map(map.arr);
+	free_map(&map);
 
 	return (EXIT_SUCCESS);
 }

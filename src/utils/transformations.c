@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:06:52 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 22:25:45 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:01:31 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_point	apply_transformations(int x, int y, t_fdf *fdf)
 	y_offset = (fdf->map->height - 1) * fdf->projection->interval / 2;
 	point.x = x * (fdf->projection->interval) - x_offset;
 	point.y = y * (fdf->projection->interval) - y_offset;
-	point.z = get_z_axis(x, y, fdf->map->arr) * (int)fdf->projection->z_scale;
+//	point.z = get_z_axis(x, y, fdf->map->arr) * (int)fdf->projection->z_scale;
 	rotate_z(&point.x, &point.y, fdf->projection->z_rotate);
 	rotate_x(&point.y, &point.z, fdf->projection->x_rotate);
 	rotate_y(&point.x, &point.z, fdf->projection->y_rotate);

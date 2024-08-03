@@ -6,30 +6,27 @@
 /*   By: dyunta <dyunta@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:18:28 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 22:25:40 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:56:33 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-void	free_map(char ***map)
+void	free_map(t_map *map)
 {
-	int	i;
-	int	j;
+	t_point	**map_points;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (map[i])
+	map_points = map->map;
+	y = 0;
+	x = 0;
+	while (y < map->height)
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			free(map[i][j]);
-			j++;
-		}
-		free(map[i]);
-		i++;
+		free(map_points[y]);
+		y++;
 	}
-	free(map);
+	free(map->map);
 }
 
 void	free_split(char **split)

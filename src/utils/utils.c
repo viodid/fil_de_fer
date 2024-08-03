@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 20:28:45 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:09:01 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_max_min_z(t_map* map)
 	int 	x;
 	int 	y;
 
-	arr = map->arr;
+	arr = map->map;
 	tmp = ft_split(arr[0][0], ',');
 	map->z_max = ft_atoi(tmp[0]);
 	map->z_min = map->z_max;
@@ -67,16 +67,16 @@ double 	get_max_value(double a, double b)
  * Returns the total number of elements that exist in the first row
  * of a 2-dimensional array.
  */
-int	get_map_width(char*** map)
+int	get_map_width(char** row_map)
 {
 	int	i;
 	int len;
 
 	i = 0;
 	len = 0;
-	while (map[0][i])
+	while (row_map[i])
 	{
-		if (map[0][i][0] != '\n')
+		if (row_map[i][0] != '\n')
 			len++;
 		i++;
 	}
