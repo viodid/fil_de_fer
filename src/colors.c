@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 10:16:12 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 12:12:05 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 12:28:09 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
 	int 	green;
 	int 	blue;
 
-	if (curr.x == b.x)
+	if (curr.color == b.color)
 		return (curr.color);
 	a.x = b.x - dx;
 	a.y = b.y - dy;

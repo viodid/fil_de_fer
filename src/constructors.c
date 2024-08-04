@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 10:56:49 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 12:45:54 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ static t_point	*construct_points(char **row_map, t_point *row_points, int y, con
 		row_points[x].y = y;
 		row_points[x].z = ft_atoi(split[0]);
 		if (split[1] != NULL)
-			row_points[x].color = ft_atoi_hex(split[1]);
+			row_points[x].color = (ft_atoi_hex(split[1]) << 8) + 0xFF;
 		else
-			row_points[x].color = 0xFFFFFF;
+			row_points[x].color = 0xFFFFFFFF;
 		free_split(split);
 		x++;
 	}
