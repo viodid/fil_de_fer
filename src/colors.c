@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 10:16:12 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 12:50:30 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 13:07:45 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static double	percentage(double a, double b, double c);
 
-int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
+unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
 {
 	t_point a;
 	double	per;
@@ -30,9 +30,19 @@ int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
 	per = percentage(a.x, b.x, curr.x);
 	if (per == 0)
 		return (a.color);
-	red = (int)(((a.color >> 24) + (b.color >> 24)) * per);
-	green = (int)((((a.color & 0x00FFFFFF) >> 16) + ((b.color & 0x00FFFFFF) >> 16)) * per);
-	blue = (int)(((a.color & 0x0000FFFF >> 8) + (b.color & 0x0000FFFF >> 8)) * per);
+	if ((a.color >> 24) == (b.color >> 24))
+		red = (int)a.color >> 24;
+	else
+		red = (int)(((a.color >> 24) + (b.color >> 24)) * per);
+	if (((a.color & 0x00FFFFFF) >> 16) == ((b.color & 0x00FFFFFF) >> 16))
+		green = (int)((a.color & 0x00FFFFFF) >> 16);
+	else
+		green = (int)((((a.color & 0x00FFFFFF) >> 16) + ((b.color & 0x00FFFFFF) >> 16)) * per);
+	if (((a.color & 0x0000FFFF) >> 8) == ((b.color & 0x0000FFFF) >> 8))
+		blue = (int)((a.color & 0x0000FFFF) >> 8);
+	else
+		blue = (int)((((a.color & 0x0000FFFF) >> 8) + ((b.color & 0x0000FFFF) >> 8)) * per);
+	unsigned int output = (((red << 24) + (green << 16) + (blue << 8)) + 0xFF);
 	return (((red << 24) + (green << 16) + (blue << 8)) + 0xFF);
 }
 
