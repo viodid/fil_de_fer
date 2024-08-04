@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 09:39:04 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 09:40:17 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 10:27:35 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi_hex(char *str)
 
 	output = 0;
 	offset = 0;
-	hex = "0123456789abcdef";
+	hex = "0123456789ABCDEF";
 	if (ft_strncmp(str, "0x", 3) != 0)
 		offset = 2;
 	while (str[offset])
@@ -29,7 +29,7 @@ int	ft_atoi_hex(char *str)
 		i = 0;
 		while (hex[i])
 		{
-			if (hex[i] == str[offset])
+			if (hex[i] == ft_toupper(str[offset]))
 				output = (output * 16) + i;
 			i++;
 		}
