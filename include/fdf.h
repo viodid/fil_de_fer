@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 16:44:41 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 21:58:41 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define FDF_H
 
 # define WIDTH 			1920
-# define HEIGHT 			1080
+# define HEIGHT 		1080
 # define DEFAULT_COLOR	0xFFFFFFFF
-# define COLOR_TEN		0x9E0142FF
+# define COLOR_TEN		0xFF0000FF
 # define COLOR_NINE		0xD53E4FFF
 # define COLOR_EIGHT	0xF46D43FF
 # define COLOR_SEVEN	0xFDAE61FF
-# define COLOR_SIX		0xFEE08bFF
+# define COLOR_SIX		0xFEE08BFF
 # define COLOR_FIVE		0xE6F598FF
 # define COLOR_FOUR		0XABDDA4FF
 # define COLOR_THREE	0x66C2A5FF
@@ -99,8 +99,9 @@ void	free_split(char** split);
 /*
  * Color utils.
  */
-unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int is_big_slope);
+unsigned int	get_color_gradient(t_point curr, t_point b, int dx);
 void			set_custom_colors(t_map *map);
+unsigned int	compute_color(unsigned int color_a, unsigned int color_b, double per, int bitshift);
 
 /*
  * Bresenham's .
