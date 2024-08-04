@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 10:16:12 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 12:28:09 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 12:50:30 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
 	per = percentage(a.x, b.x, curr.x);
 	if (per == 0)
 		return (a.color);
-	red = (int)(((a.color >> 16) + (b.color >> 16)) * per);
-	green = (int)((((a.color & 0x00FFFF) >> 8) + ((b.color & 0x00FFFF) >> 8)) * per);
-	blue = (int)(((a.color & 0x0000FF) + (b.color & 0x0000FF)) * per);
-	int output = ((red << 16) + (green << 8) + blue);
-	return ((red << 16) + (green << 8) + blue);
+	red = (int)(((a.color >> 24) + (b.color >> 24)) * per);
+	green = (int)((((a.color & 0x00FFFFFF) >> 16) + ((b.color & 0x00FFFFFF) >> 16)) * per);
+	blue = (int)(((a.color & 0x0000FFFF >> 8) + (b.color & 0x0000FFFF >> 8)) * per);
+	return (((red << 24) + (green << 16) + (blue << 8)) + 0xFF);
 }
 
 static double	percentage(double a, double b, double c)
