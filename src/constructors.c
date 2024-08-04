@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 14:46:16 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 16:44:45 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 static t_point**	map_constructor(const char *file_path);
 static t_point	*construct_points(char **row_map, t_point *row_points, int y, const char *file_path);
+
+void	map_init(const char *file_path, t_map *map)
+{
+	map->map_points = map_constructor(file_path);
+	map->height = get_map_height(file_path);
+	map->width = get_map_width(file_path);
+	set_max_min_z(map);
+	set_custom_colors(map);
+}
 
 void	projection_init(t_projection *projection, t_map *map)
 {
@@ -26,19 +35,9 @@ void	projection_init(t_projection *projection, t_map *map)
 	projection->y_offset = HEIGHT / 2;
 	projection->zoom = 1;
 	projection->z_scale = 4;
-	projection->high = INT_MIN;
-	projection->low = INT_MAX;
 	projection->interval = get_min_value(WIDTH / map->width,
 			HEIGHT / map->height) / 2;
 	projection->interval = get_max_value(2, (int)projection->interval);
-}
-
-void	map_init(const char *file_path, t_map *map)
-{
-	map->map_points = map_constructor(file_path);
-	map->height = get_map_height(file_path);
-	map->width = get_map_width(file_path);
-	set_max_min_z(map);
 }
 
 void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
@@ -105,7 +104,7 @@ static t_point	*construct_points(char **row_map, t_point *row_points, int y, con
 		if (split[1] != NULL)
 			row_points[x].color = (ft_atoi_hex(split[1]) << 8) + 0xFF;
 		else
-			row_points[x].color = 0xFFFFFFFF;
+			row_points[x].color = 0x42424242;
 		free_split(split);
 		x++;
 	}
