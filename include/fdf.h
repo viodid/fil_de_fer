@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 13:08:05 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 15:50:15 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	args_sanitizer(int argc, char *argv[]);
 int		open_file(const char *file_pat);
 void    close_file(int fd);
 void	free_split(char** split);
-unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int dy);
+unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int is_big_slope);
 
 /*
  * Bresenham's .

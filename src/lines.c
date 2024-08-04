@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 12:17:18 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 15:56:30 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	small_slope(t_point a, t_point b, mlx_image_t* img)
 	dy = b.y - a.y;
 	e = 2 * abs(dy) - abs(dx);
 	i = 0;
-	ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, dy));
+	ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, 0));
 	while (i < abs(dx))
 	{
 		if (dx >= 0)
@@ -93,7 +93,7 @@ static void	small_slope(t_point a, t_point b, mlx_image_t* img)
 			else
 				a.y--;
 		}
-		ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, dy));
+		ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, 0));
 		i++;
 	}
 }
@@ -115,7 +115,7 @@ static void	big_slope(t_point a, t_point b, mlx_image_t* img)
 	dy = b.y - a.y;
 	e = 2 * abs(dx) - abs(dy);
 	i = 0;
-	ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, dy));
+	ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, 1));
 	while (i < abs(dy))
 	{
 		if (dy >= 0)
@@ -132,7 +132,7 @@ static void	big_slope(t_point a, t_point b, mlx_image_t* img)
 			else
 				a.x--;
 		}
-		ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, dy));
+		ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx, 1));
 		i++;
 	}
 }

@@ -6,28 +6,36 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 10:16:12 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 13:07:45 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 15:54:44 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+static unsigned int	calculate_gradient(t_point a, t_point b, int x);
 static double	percentage(double a, double b, double c);
 
-unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
+unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int is_big_slope)
 {
 	t_point a;
-	double	per;
-	int 	red;
-	int 	green;
-	int 	blue;
 
 	if (curr.color == b.color)
 		return (curr.color);
 	a.x = b.x - dx;
-	a.y = b.y - dy;
 	a.color = curr.color;
-	per = percentage(a.x, b.x, curr.x);
+	if (is_big_slope)
+		return (calculate_gradient(a, b, curr.x));
+	return (calculate_gradient(b, a, curr.x));
+}
+
+static unsigned int	calculate_gradient(t_point a, t_point b, int x)
+{
+	double	per;
+	unsigned int 	red;
+	unsigned int 	green;
+	unsigned int 	blue;
+
+	per = percentage(a.x, b.x, x);
 	if (per == 0)
 		return (a.color);
 	if ((a.color >> 24) == (b.color >> 24))
@@ -42,7 +50,6 @@ unsigned int	get_color_gradient(t_point curr, t_point b, int dx, int dy)
 		blue = (int)((a.color & 0x0000FFFF) >> 8);
 	else
 		blue = (int)((((a.color & 0x0000FFFF) >> 8) + ((b.color & 0x0000FFFF) >> 8)) * per);
-	unsigned int output = (((red << 24) + (green << 16) + (blue << 8)) + 0xFF);
 	return (((red << 24) + (green << 16) + (blue << 8)) + 0xFF);
 }
 
