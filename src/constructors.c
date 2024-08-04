@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 20:16:39 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 09:40:38 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ static t_point**	map_constructor(const char *file_path)
 	return (map);
 }
 
-static int	ft_atoi_hex(char *str);
-
 static t_point	*construct_points(char **row_map, t_point *row_points, int y, const char *file_path)
 {
 	char	**split;
@@ -114,28 +112,3 @@ static t_point	*construct_points(char **row_map, t_point *row_points, int y, con
 	return (row_points);
 }
 
-static int	ft_atoi_hex(char *str)
-{
-	int		output;
-	char	*hex;
-	int 	i;
-	int 	offset;
-
-	output = 0;
-	offset = 0;
-	hex = "0123456789abcdef";
-	if (ft_strncmp(str, "0x", 3) != 0)
-		offset = 2;
-	while (str[offset])
-	{
-		i = 0;
-		while (hex[i])
-		{
-			if (hex[i] == str[offset])
-				output = (output * 16) + i;
-			i++;
-		}
-		offset++;
-	}
-	return (output);
-}

@@ -6,17 +6,17 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 20:32:09 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:36:36 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
 /**
- * Iterates over 3-dimensional array pointed by map_points->arr and sets its
+ * Iterates over 2-dimensional array of t_points * and sets its
  * maximum and minimum z values to the corresponding variable in the struct t_map.
  * These values are used to set a premise from which to create the color gradient.
- * @param map The pointer to the struct that holds the 3-dimensional array
+ * @param map The pointer to the struct that holds the 2-dimensional array.
  */
 void	set_max_min_z(t_map* map)
 {

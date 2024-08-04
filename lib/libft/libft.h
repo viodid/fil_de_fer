@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 00:04:20 by dyunta            #+#    #+#             */
-/*   Updated: 2023/02/09 19:47:48 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/04 09:40:27 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_list
 }	t_list;
 
 int		ft_atoi(const char *nptr);
+int		ft_atoi_hex(char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t number, size_t size);
 int		ft_isalnum(int c);
