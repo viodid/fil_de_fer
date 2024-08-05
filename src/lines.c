@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 14:31:16 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:59:31 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,7 @@ static void	small_slope(t_point a, t_point b, mlx_image_t *img)
 		if (e < 0)
 			e += 2 * abs(dy);
 		else
-		{
-			e += 2 * abs(dy) - 2 * abs(dx);
-			if (dy >= 0)
-				a.y++;
-			else
-				a.y--;
-		}
+			e = bresenham_utils(&(a.y), e, dy, dx);
 		ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx));
 		i++;
 	}
@@ -107,9 +101,9 @@ static void	small_slope(t_point a, t_point b, mlx_image_t *img)
 static void	big_slope(t_point a, t_point b, mlx_image_t *img)
 {
 	int	e;
-	int i;
-	int dx;
-	int dy;
+	int	i;
+	int	dx;
+	int	dy;
 
 	dx = b.x - a.x;
 	dy = b.y - a.y;
@@ -125,19 +119,13 @@ static void	big_slope(t_point a, t_point b, mlx_image_t *img)
 		if (e < 0)
 			e += 2 * abs(dx);
 		else
-		{
-			e += 2 * abs(dx) - 2 * abs(dy);
-			if (dx >= 0)
-				a.x++;
-			else
-				a.x--;
-		}
+			e = bresenham_utils(&(a.x), e, dx, dy);
 		ft_put_pixel(img, a.x, a.y, get_color_gradient(a, b, dx));
 		i++;
 	}
 }
 
-static void	ft_put_pixel(mlx_image_t* img, int x, int y, uint32_t color)
+static void	ft_put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
 {
 	if (y < 0 || x < 0)
 		return ;

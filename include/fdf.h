@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 10:26:06 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:46:03 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ double			percentage(double a, double b, double c);
  * Bresenham's .
  */
 void	draw_map(t_fdf *fdf);
+int		bresenham_utils(int *coordinate, int e, int dx, int dy);
 
 /*
  * Isometric projection transformations.
