@@ -6,15 +6,14 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 14:29:05 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:05:58 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 static t_point	**map_constructor(const char *file_path);
-static t_point	*construct_points(char **row_map, t_point *row_points,
-					int y, const char *file_path);
+static t_point	*construct_points(char **row_map, t_point *row_points, int y);
 
 void	map_init(const char *file_path, t_map *map)
 {
@@ -27,17 +26,17 @@ void	map_init(const char *file_path, t_map *map)
 
 void	projection_init(t_projection *projection, t_map *map)
 {
-	projection->alpha = 0.8 / 2;
-	projection->beta = 0.8;
+	projection->alpha = 0.5 / 2;
+	projection->beta = 0.5;
 	projection->x_rotate = 0;
 	projection->y_rotate = 0;
 	projection->z_rotate = 0;
 	projection->x_offset = WIDTH / 2;
 	projection->y_offset = HEIGHT / 2;
-	projection->zoom = 1;
-	projection->z_scale = 5;
-	projection->interval = get_min_value(WIDTH / map->width,
-			HEIGHT / map->height) / 2;
+	projection->zoom = 2;
+	projection->z_scale = 2;
+	projection->interval = get_min_value(WIDTH / map->height,
+			HEIGHT / map->width) / 2;
 	projection->interval = get_max_value(2, (int)projection->interval);
 }
 
@@ -59,9 +58,6 @@ void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
 	fdf->projection = projection;
 }
 
-/*
- * TODO: write docstrings
-*/
 static t_point	**map_constructor(const char *file_path)
 {
 	int		fd;
@@ -70,7 +66,9 @@ static t_point	**map_constructor(const char *file_path)
 	char	**split;
 	t_point	**map;
 
-	map = (t_point **)malloc(sizeof(t_point *) * (get_map_height(file_path)));
+	int height = get_map_height(file_path);
+	map = (t_point **)malloc(sizeof(t_point *) * height);
+	map = ft_memset(map, 0, sizeof(t_point *) * height);
 	if (map == NULL)
 		exit(EXIT_FAILURE);
 	fd = open_file(file_path);
@@ -79,7 +77,7 @@ static t_point	**map_constructor(const char *file_path)
 	while (line)
 	{
 		split = ft_split(line, ' ');
-		map[y] = construct_points(split, map[y], y, file_path);
+		map[y] = construct_points(split, map[y], y);
 		free(line);
 		line = get_next_line(fd);
 		y++;
@@ -88,17 +86,19 @@ static t_point	**map_constructor(const char *file_path)
 	return (map);
 }
 
-static t_point	*construct_points(char **row_map, t_point *row_points,
-									int y, const char *file_path)
+static t_point	*construct_points(char **row_map, t_point *row_points, int y)
 {
 	char	**split;
 	int		x;
+	int		width;
 
-	row_points = (t_point *) malloc(sizeof(t_point) * get_map_width(file_path));
+	width = get_map_width_line(row_map);
+	row_points = (t_point *) malloc(sizeof(t_point) * width);
+	row_points = ft_memset(row_points, 0, sizeof(t_point) * width);
 	if (row_points == NULL)
 		exit(EXIT_FAILURE);
 	x = 0;
-	while (row_map[x])
+	while (x < width)
 	{
 		split = ft_split(row_map[x], ',');
 		row_points[x].x = x;

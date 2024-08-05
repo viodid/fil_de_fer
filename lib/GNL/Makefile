@@ -3,7 +3,7 @@ LIB=ar rcs
 CODEDIRS=./
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -fPIE
+CFLAGS=-Wall -Wextra -Werror -fPIE -O3
 
 CFILES=$(shell find $(CODEDIRS) -name '*.c')
 OBJECTS=$(CFILES:.c=.o)

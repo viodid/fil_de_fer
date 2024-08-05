@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 15:05:58 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:10:45 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ double	get_max_value(double a, double b)
  */
 int	get_map_width(const char *file_path)
 {
-	int		i;
 	int		len;
 	int		fd;
 	char	*line;
@@ -73,16 +72,28 @@ int	get_map_width(const char *file_path)
 	fd = open_file(file_path);
 	line = get_next_line(fd);
 	split = ft_split(line, ' ');
+	len = get_map_width_line(split);
+	free_split(split);
+	free(line);
+	return (len);
+}
+
+/*
+ * NOTE: this function does NOT free the allocated memory.
+ */
+int	get_map_width_line(char **str_arr)
+{
+	int	i;
+	int	len;
+
 	i = 0;
 	len = 0;
-	while (split[i])
+	while (str_arr[i])
 	{
-		if (split[i][0] != '\n')
+		if (str_arr[i][0] != '\n')
 			len++;
 		i++;
 	}
-	free(line);
-	free_split(split);
 	return (len);
 }
 

@@ -88,6 +88,7 @@ void			map_init(const char *file_path, t_map *map);
 void			fdf_init(t_map *map, t_projection *projection, t_fdf *fdf);
 int				get_map_height(const char *file_path);
 int				get_map_width(const char *file_path);
+int				get_map_width_line(char **str_arr);
 void			free_map(t_map *map);
 void			set_max_min_z(t_map *map);
 double			get_min_value(double a, double b);

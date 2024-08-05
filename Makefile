@@ -18,28 +18,16 @@ NAME     := fdf
 
 all: $(NAME)
 
-# Build MLX42 library
 $(MLX): $(MLX_DIR)
 	cmake $(MLX_DIR) -B $(MLX_DIR)/build
 	make -C $(MLX_DIR)/build -j4
 
-# Clone MLX42 repository if not present
 $(MLX_DIR):
 	git clone https://github.com/codam-coding-college/MLX42.git $@
 
-# Build libft library
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
-# Build gnl library
-$(GNL):
-	make -C $(GNL_DIR)
-
-# Build the final executable
-$(NAME): $(MLX) $(LIBFT) $(GNL) $(OBJECTS)
+$(NAME): $(MLX) $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBS) -o $@
 
-# Compile source files to object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) -c $(CFLAGS) $(HEADERS) $< -o $@
