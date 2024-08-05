@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:57:34 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 19:57:57 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 23:10:04 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,22 @@ int	get_map_height(const char *file_path)
 	}
 	close_file(fd);
 	return (y);
+}
+
+void	reset_canvas(mlx_image_t *img)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	y = 0;
+	while (y < img->height)
+	{
+		x = 0;
+		while (x < img->width)
+		{
+			mlx_put_pixel(img, x, y, BACKGROUND);
+			x++;
+		}
+		y++;
+	}
 }

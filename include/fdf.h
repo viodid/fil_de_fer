@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 15:10:54 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 23:55:49 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define FDF_H
 
 # define WIDTH 			1920
-# define HEIGHT 		1080
+# define HEIGHT			1080
+# define BACKGROUND		0x222222FF
 # define DEFAULT_COLOR	0xFFFFFFFF
 # define COLOR_TEN		0xFF0000FF
 # define COLOR_NINE		0xD53E4FFF
@@ -55,7 +56,8 @@ typedef struct s_projection
 	double	z_scale;
 	int		x_offset;
 	int		y_offset;
-	int		zoom;
+	double	zoom;
+
 }	t_projection;
 
 typedef struct s_map
@@ -78,7 +80,9 @@ typedef struct s_fdf
 /*
  * Hooks
  */
-void			hook_window(void *param);
+void			hooks(void *param);
+void			scroll_hook(double x_delta, double y_delta, void *param);
+void			rotation_hooks(void *param);
 
 /*
  * Map utils.
@@ -93,6 +97,7 @@ void			free_map(t_map *map);
 void			set_max_min_z(t_map *map);
 double			get_min_value(double a, double b);
 double			get_max_value(double a, double b);
+void			reset_canvas(mlx_image_t *img);
 
 /*
  * Other utils.
@@ -112,7 +117,7 @@ double			percentage(double a, double b, double c);
 /*
  * Bresenham's .
  */
-void			draw_map(t_fdf *fdf);
+void			draw_map(void *param);
 int				bresenham_utils(int *coordinate, int e, int dx, int dy);
 
 /*

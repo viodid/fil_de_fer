@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 14:59:31 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 23:10:32 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ static void	small_slope(t_point a, t_point b, mlx_image_t *img);
 static void	draw_line(t_point a, t_point b, mlx_image_t *img);
 static void	ft_put_pixel(mlx_image_t *img, int x, int y, uint32_t color);
 
-void	draw_map(t_fdf *fdf)
+void	draw_map(void *param)
 {
 	int		x;
 	int		y;
 	t_point	point_a;
+	t_fdf	*fdf;
 
+	fdf = (t_fdf *)param;
+	reset_canvas(fdf->img);
 	y = 0;
 	while (y < fdf->map->height && y >= 0)
 	{

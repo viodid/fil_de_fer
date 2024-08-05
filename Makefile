@@ -34,8 +34,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	rm -f $(OBJECTS)
-	make clean -C $(LIBFT_DIR)
-	make clean -C $(GNL_DIR)
 
 fclean: clean
 	rm -f $(NAME)

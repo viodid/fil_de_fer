@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 14:27:27 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 23:36:27 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	main(int argc, char *argv[])
 	projection_init(&projection, &map);
 	fdf_init(&map, &projection, &fdf);
 	draw_map(&fdf);
-	mlx_loop_hook(fdf.mlx, &hook_window, &fdf);
+	mlx_loop_hook(fdf.mlx, &hooks, &fdf);
+	mlx_scroll_hook(fdf.mlx, &scroll_hook, &fdf);
+	mlx_loop_hook(fdf.mlx, &rotation_hooks, &fdf);
+	mlx_loop_hook(fdf.mlx, &draw_map, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
 	free_map(&map);
