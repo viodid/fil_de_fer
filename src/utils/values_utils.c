@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 09:57:55 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:45:47 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
  */
 void	set_max_min_z(t_map* map)
 {
-	char**	tmp;
 	int 	x;
 	int 	y;
 	int 	curr;

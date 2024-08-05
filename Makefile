@@ -1,24 +1,28 @@
 NAME=fdf
 CODEDIRS=src
-INCDIR=./include/ ./MLX42/
-INCLIB=./lib/libft/libft.a ./lib/GNL/gnl.a ./lib/printf/printf.a
-INCPATH=/usr/lib
-LINKLIB=mlx_Linux Xext X11 m z
+INCDIR=./include/
+INCLIB=./lib/libft/libft.a ./lib/GNL/gnl.a ./lib/MLX42/build/libmlx42.a
 
 CC=gcc
-OPT=-g3
-# https://stackoverflow.com/questions/8025766/makefile-auto-dependency-generation
-#DEPFLAGS=-MP -MD
-# https://www.rapidtables.com/code/linux/gcc/gcc-l.html
-CFLAGS= -I$(INCDIR) -L$(INCPATH) -l$(LINKLIB) $(OPT)
+# https://www.rapidtables.com/code/linux/gcc/gcc-o.html#optimization
+OPT=-O3
+# https://www.rapidtables.com/code/linux/gcc/gcc-g.html
+DEBUG=-g0
+WARNINGS=-Wextra -Wall -Werror -Wunreachable-code
+MLX_FLAGS=-ldl -lglfw -pthread -lm
+CFLAGS=$(OPT) $(DEBUG) $(WARNINGS) -I$(INCDIR)
+LFLAGS=$(INCLIB) $(MLX_FLAGS)
 
 CFILES=$(shell find $(CODEDIRS) -name '*.c')
 OBJECTS=$(CFILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(CFILES) -g3 MLX42/build/libmlx42.a $(INCLIB) -ldl -lglfw -pthread -lm -o fdf
+$(NAME): $(OBJECTS)
+	$(CC) $(OBJECTS) $(LFLAGS) -o $@
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -f $(OBJECTS)
@@ -37,7 +41,6 @@ struct:
 	info Create folder and basic file structure.
 	mkdir -p src include
 	git clone https://github.com/viodid/libft.git lib/libft
-	git clone https://github.com/viodid/ft_printf.git lib/printf
 	git clone https://github.com/viodid/GNL.git lib/gnl
 	cd lib/libft && make && make clean && rm -rf .git
 	cd lib/printf && make && make clean && rm -rf .git

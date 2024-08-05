@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 09:42:59 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 10:26:06 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define COLOR_TWO		0x3288BDFF
 # define COLOR_ONE		0x5E4FA2FF
 
-#include "../MLX42/include/MLX42/MLX42.h"
+#include "../lib/MLX42/include/MLX42/MLX42.h"
 #include "../lib/libft/libft.h"
 #include "../lib/GNL/get_next_line.h"
 #include <stdlib.h>
