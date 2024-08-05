@@ -6,14 +6,14 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 14:09:51 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 12:37:06 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:31:16 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	big_slope(t_point a, t_point b, mlx_image_t* img);
-static void	small_slope(t_point a, t_point b, mlx_image_t* img);
+static void	big_slope(t_point a, t_point b, mlx_image_t *img);
+static void	small_slope(t_point a, t_point b, mlx_image_t *img);
 static void	draw_line(t_point a, t_point b, mlx_image_t *img);
 static void	ft_put_pixel(mlx_image_t *img, int x, int y, uint32_t color);
 
@@ -49,7 +49,7 @@ void	draw_map(t_fdf *fdf)
 static void	draw_line(t_point a, t_point b, mlx_image_t *img)
 {
 	int	dx;
-	int dy;
+	int	dy;
 
 	dx = b.x - a.x;
 	dy = b.y - a.y;
@@ -65,12 +65,12 @@ static void	draw_line(t_point a, t_point b, mlx_image_t *img)
  * @param dx The difference between x2 - x1
  * @param dy The difference between y2 - y1
  */
-static void	small_slope(t_point a, t_point b, mlx_image_t* img)
+static void	small_slope(t_point a, t_point b, mlx_image_t *img)
 {
 	int	e;
-	int i;
-	int dx;
-	int dy;
+	int	i;
+	int	dx;
+	int	dy;
 
 	dx = b.x - a.x;
 	dy = b.y - a.y;
@@ -104,7 +104,7 @@ static void	small_slope(t_point a, t_point b, mlx_image_t* img)
  * @param dx The difference between x2 - x1
  * @param dy The difference between y2 - y1
  */
-static void	big_slope(t_point a, t_point b, mlx_image_t* img)
+static void	big_slope(t_point a, t_point b, mlx_image_t *img)
 {
 	int	e;
 	int i;

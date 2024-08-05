@@ -6,12 +6,11 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 14:13:17 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:27:27 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
 
 int	main(int argc, char *argv[])
 {
@@ -25,13 +24,10 @@ int	main(int argc, char *argv[])
 		perror("Error message");
 		exit(EXIT_FAILURE);
 	}
-
 	map_init(argv[1], &map);
 	projection_init(&projection, &map);
 	fdf_init(&map, &projection, &fdf);
-
 	draw_map(&fdf);
-
 	mlx_loop_hook(fdf.mlx, &hook_window, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);

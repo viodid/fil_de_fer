@@ -6,14 +6,15 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 10:09:02 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:29:05 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static t_point**	map_constructor(const char *file_path);
-static t_point	*construct_points(char **row_map, t_point *row_points, int y, const char *file_path);
+static t_point	**map_constructor(const char *file_path);
+static t_point	*construct_points(char **row_map, t_point *row_points,
+					int y, const char *file_path);
 
 void	map_init(const char *file_path, t_map *map)
 {
@@ -61,12 +62,12 @@ void	fdf_init(t_map *map, t_projection *projection, t_fdf *fdf)
 /*
  * TODO: write docstrings
 */
-static t_point**	map_constructor(const char *file_path)
+static t_point	**map_constructor(const char *file_path)
 {
 	int		fd;
 	int		y;
 	char	*line;
-	char 	**split;
+	char	**split;
 	t_point	**map;
 
 	map = (t_point **)malloc(sizeof(t_point *) * (get_map_height(file_path)));
@@ -87,7 +88,8 @@ static t_point**	map_constructor(const char *file_path)
 	return (map);
 }
 
-static t_point	*construct_points(char **row_map, t_point *row_points, int y, const char *file_path)
+static t_point	*construct_points(char **row_map, t_point *row_points,
+									int y, const char *file_path)
 {
 	char	**split;
 	int		x;
