@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:53:22 by dyunta            #+#    #+#             */
-/*   Updated: 2024/07/06 18:56:35 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:20:32 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -116,7 +116,8 @@ static t_list	*rearrange_content(t_list *header)
 		i = 0;
 		while (((char *)node->content)[i])
 		{
-			if (((char *)node->content)[i++] == '\n' && *((char *)node->content + i))
+			if (((char *)node->content)[i++] == '\n'
+			&& *((char *)node->content + i))
 			{
 				new_list = create_and_append_node(node->content + i, NULL);
 				break ;

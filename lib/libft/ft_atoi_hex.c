@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 09:39:04 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 10:27:35 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:17:51 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	ft_atoi_hex(char *str)
 {
 	int		output;
 	char	*hex;
-	int 	i;
-	int 	offset;
+	int		i;
+	int		offset;
 
 	output = 0;
 	offset = 0;
