@@ -1,34 +1,57 @@
-NAME=fdf
-CODEDIRS=src
-INCDIR=./include/
-INCLIB=./lib/libft/libft.a ./lib/GNL/gnl.a ./lib/MLX42/build/libmlx42.a
-
-CC=gcc
-# https://www.rapidtables.com/code/linux/gcc/gcc-o.html#optimization
-OPT=-O3
-# https://www.rapidtables.com/code/linux/gcc/gcc-g.html
-DEBUG=-g0
-WARNINGS=-Wextra -Wall -Werror -Wunreachable-code
-MLX_FLAGS=-ldl -lglfw -pthread -lm
-CFLAGS=$(OPT) $(DEBUG) $(WARNINGS) -I$(INCDIR)
-LFLAGS=$(INCLIB) $(MLX_FLAGS)
-
-CFILES=$(shell find $(CODEDIRS) -name '*.c')
-OBJECTS=$(CFILES:.c=.o)
+CC      := gcc
+OPT     := -O3
+DEBUG   := -g0
+CFLAGS  := -Wall -Wextra -Werror -Wunreachable-code $(OPT) $(DEBUG)
+MLX_DIR  := ./lib/MLX42
+MLX      := $(MLX_DIR)/build/libmlx42.a
+LIBFT_DIR := ./lib/libft
+LIBFT    := $(LIBFT_DIR)/libft.a
+GNL_DIR  := ./lib/GNL
+GNL      := $(GNL_DIR)/gnl.a
+HEADERS  := -I ./inc -I $(MLX_DIR)/include/MLX42 -I $(LIBFT_DIR) -I $(GNL_DIR)
+LIBS     := -L$(LIBFT_DIR) -lft -L$(GNL_DIR) $(GNL) -L$(MLX_DIR)/build -lmlx42 -ldl -lglfw -pthread -lm
+SRC_DIR  := src
+OBJ_DIR  := obj
+SRC      := $(shell find $(SRC_DIR) -name '*.c')
+OBJECTS  := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+NAME     := fdf
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LFLAGS) -o $@
+# Build MLX42 library
+$(MLX): $(MLX_DIR)
+	cmake $(MLX_DIR) -B $(MLX_DIR)/build
+	make -C $(MLX_DIR)/build -j4
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+# Clone MLX42 repository if not present
+$(MLX_DIR):
+	git clone https://github.com/codam-coding-college/MLX42.git $@
+
+# Build libft library
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+# Build gnl library
+$(GNL):
+	make -C $(GNL_DIR)
+
+# Build the final executable
+$(NAME): $(MLX) $(LIBFT) $(GNL) $(OBJECTS)
+	$(CC) $(OBJECTS) $(LIBS) -o $@
+
+# Compile source files to object files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) -c $(CFLAGS) $(HEADERS) $< -o $@
 
 clean:
 	rm -f $(OBJECTS)
+	make clean -C $(LIBFT_DIR)
+	make clean -C $(GNL_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf $(MLX_DIR)
 
 re: fclean all
 
@@ -38,12 +61,10 @@ diff:
 	@git --no-pager diff --stat
 
 struct:
-	info Create folder and basic file structure.
-	mkdir -p src include
+	@mkdir -p src include
 	git clone https://github.com/viodid/libft.git lib/libft
 	git clone https://github.com/viodid/GNL.git lib/gnl
 	cd lib/libft && make && make clean && rm -rf .git
-	cd lib/printf && make && make clean && rm -rf .git
 	cd lib/gnl && make && make clean && rm -rf .git
 
-.PHONY: fdf all clean fclean re diff struc
+.PHONY: all clean fclean re diff struct
