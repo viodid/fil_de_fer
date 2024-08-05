@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 19:05:58 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:56:08 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ static t_point	**map_constructor(const char *file_path)
 	char	**split;
 	t_point	**map;
 
-	int height = get_map_height(file_path);
-	map = (t_point **)malloc(sizeof(t_point *) * height);
-	map = ft_memset(map, 0, sizeof(t_point *) * height);
+	map = (t_point **)malloc(sizeof(t_point *) * get_map_height(file_path));
+	map = ft_memset(map, 0, sizeof(t_point *) * get_map_height(file_path));
 	if (map == NULL)
 		exit(EXIT_FAILURE);
 	fd = open_file(file_path);

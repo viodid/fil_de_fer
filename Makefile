@@ -48,11 +48,4 @@ diff:
 	@git status
 	@git --no-pager diff --stat
 
-struct:
-	@mkdir -p src include
-	git clone https://github.com/viodid/libft.git lib/libft
-	git clone https://github.com/viodid/GNL.git lib/gnl
-	cd lib/libft && make && make clean && rm -rf .git
-	cd lib/gnl && make && make clean && rm -rf .git
-
 .PHONY: all clean fclean re diff struct
