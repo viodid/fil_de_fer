@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 21:34:54 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 09:19:42 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 15:03:41 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static unsigned int	get_color_level(int z, int z_min, int z_max);
 
 void	set_custom_colors(t_map *map)
 {
-	t_point **map_points;
-	int		x;
-	int 	y;
+	t_point			**map_points;
+	int				x;
+	int				y;
 	unsigned int	*color;
 
 	map_points = map->map_points;
@@ -30,7 +30,8 @@ void	set_custom_colors(t_map *map)
 		{
 			color = &map_points[y][x].color;
 			if (*color == 0x42424242)
-				*color = get_color_level(map_points[y][x].z, map->z_min, map->z_max);
+				*color = get_color_level(map_points[y][x].z,
+						map->z_min, map->z_max);
 			x++;
 		}
 		y++;
@@ -42,9 +43,7 @@ static unsigned int	get_color_level(int z, int z_min, int z_max)
 	double	per;
 
 	per = percentage((double)z_min, (double)z_max, (double)z);
-	if (z_min == z_max)
-		return (DEFAULT_COLOR);
-	if (per == 0)
+	if (z_min == z_max || per == 0)
 		return (DEFAULT_COLOR);
 	if (per < 0.1)
 		return (COLOR_ONE);

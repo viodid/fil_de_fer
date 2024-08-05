@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:18:28 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 11:44:05 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 15:01:51 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_map(t_map *map)
 {
 	t_point	**map_points;
-	int	y;
+	int		y;
 
 	map_points = map->map_points;
 	y = 0;

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 09:59:25 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 15:01:26 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	args_sanitizer(int argc, char *argv[])
 {
 	char	*file_path;
-	char 	*line;
+	char	*line;
 	size_t	path_len;
 
 	file_path = NULL;
