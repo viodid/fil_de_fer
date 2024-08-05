@@ -6,14 +6,12 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:13:49 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/03 19:57:06 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 09:48:05 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	ft_error(void);
-static void	ft_hook(void *param);
 
 int	main(int argc, char *argv[])
 {
@@ -32,20 +30,11 @@ int	main(int argc, char *argv[])
 	projection_init(&projection, &map);
 	fdf_init(&map, &projection, &fdf);
 
-//	 mlx_set_setting(MLX_MAXIMIZED, true);
-
 	draw_map(&fdf);
 
-//	 mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx_loop_hook(fdf.mlx, &hook_window, &fdf);
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
 	free_map(&map);
-
 	return (EXIT_SUCCESS);
-}
-
-static void	ft_hook(void* param)
-{
-	const mlx_t* mlx = param;
-	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }

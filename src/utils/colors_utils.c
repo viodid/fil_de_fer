@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 21:34:54 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 09:00:13 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 09:19:42 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static unsigned int	get_color_level(int z, int z_min, int z_max)
 	double	per;
 
 	per = percentage((double)z_min, (double)z_max, (double)z);
+	if (z_min == z_max)
+		return (DEFAULT_COLOR);
 	if (per == 0)
 		return (DEFAULT_COLOR);
 	if (per < 0.1)

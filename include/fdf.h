@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 09:01:51 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 09:42:59 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ typedef struct s_fdf
 	t_map*			map;
 	t_projection*	projection;
 }	t_fdf;
+
+/*
+ * Hooks
+ */
+void	hook_window(void *param);
 
 /*
  * Map utils.

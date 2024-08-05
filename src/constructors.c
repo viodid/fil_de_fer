@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 18:25:56 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 20:43:47 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 10:09:02 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static t_point**	map_constructor(const char *file_path)
 		free(line);
 		line = get_next_line(fd);
 		y++;
+		free_split(split);
 	}
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:00:48 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/02 22:12:55 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 09:59:25 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	args_sanitizer(int argc, char *argv[])
 {
 	char	*file_path;
+	char 	*line;
 	size_t	path_len;
 
 	file_path = NULL;
@@ -29,9 +30,11 @@ void	args_sanitizer(int argc, char *argv[])
 	if (file_path[path_len - 1] != 'f' || file_path[path_len - 2] != 'd'
 		|| file_path[path_len - 3] != 'f')
 		errno = ENOENT;
-	if (get_next_line(open_file(file_path)) == NULL)
+	line = get_next_line(open_file(file_path));
+	if (line == NULL)
 	{
 		ft_putstr_fd("Empty file\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	free(line);
 }
