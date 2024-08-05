@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 21:58:41 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 09:01:51 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	free_split(char** split);
  */
 unsigned int	get_color_gradient(t_point curr, t_point b, int dx);
 void			set_custom_colors(t_map *map);
-unsigned int	compute_color(unsigned int color_a, unsigned int color_b, double per, int bitshift);
+double			percentage(double a, double b, double c);
 
 /*
  * Bresenham's .

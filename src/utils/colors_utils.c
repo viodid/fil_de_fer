@@ -6,25 +6,62 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 21:34:54 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/04 21:49:28 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/05 09:00:13 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../include/fdf.h"
 
-unsigned int	compute_color(unsigned int color_a, unsigned int color_b, double per, int bitshift)
+static unsigned int	get_color_level(int z, int z_min, int z_max);
+
+void	set_custom_colors(t_map *map)
 {
-	unsigned int	output_color;
-	color_a = (color_a >> bitshift) & 0xFF;
-	color_b = (color_b >> bitshift) & 0xFF;
-	if ((color_a) == (color_b))
-		 return (color_a);
-	if (color_a < color_b)
-		output_color = color_a + ((unsigned int)((color_b - color_a) * per));
+	t_point **map_points;
+	int		x;
+	int 	y;
+	unsigned int	*color;
+
+	map_points = map->map_points;
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			color = &map_points[y][x].color;
+			if (*color == 0x42424242)
+				*color = get_color_level(map_points[y][x].z, map->z_min, map->z_max);
+			x++;
+		}
+		y++;
+	}
+}
+
+static unsigned int	get_color_level(int z, int z_min, int z_max)
+{
+	double	per;
+
+	per = percentage((double)z_min, (double)z_max, (double)z);
+	if (per == 0)
+		return (DEFAULT_COLOR);
+	if (per < 0.1)
+		return (COLOR_ONE);
+	else if (per < 0.2)
+		return (COLOR_TWO);
+	else if (per < 0.3)
+		return (COLOR_THREE);
+	else if (per < 0.4)
+		return (COLOR_FOUR);
+	else if (per < 0.5)
+		return (COLOR_FIVE);
+	else if (per < 0.6)
+		return (COLOR_SIX);
+	else if (per < 0.7)
+		return (COLOR_SEVEN);
+	else if (per < 0.8)
+		return (COLOR_EIGHT);
+	else if (per < 0.9)
+		return (COLOR_NINE);
 	else
-		output_color = color_a - ((unsigned int)((color_a - color_b) * per));
-	if (output_color > 0xFF)
-		output_color = 0xFF;
-	return (output_color);
+		return (COLOR_TEN);
 }
