@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 09:37:46 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/06 11:02:41 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/06 11:10:06 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	hooks(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 		fdf->projection->y_offset -= 5;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_EQUAL))
-		scroll_hook(1.02, param);
+		scroll_hook(0, 1.02, param);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_MINUS))
-		scroll_hook(0.98, param);
+		scroll_hook(0, 0.98, param);
 }
 
 static void	reset_map(t_projection *projection)
@@ -50,13 +50,14 @@ static void	reset_map(t_projection *projection)
 	projection->z_scale = 2;
 }
 
-void	scroll_hook(double delta, void *param)
+void	scroll_hook(double _, double delta, void *param)
 {
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
 	if (fdf->projection->zoom * delta > 0)
 		fdf->projection->zoom *= delta;
+	_++;
 }
 
 void	rotation_hooks(void *param)

@@ -1,7 +1,7 @@
 CC      := gcc
 OPT     := -O3
 DEBUG   := -g0
-CFLAGS  := -Wall -Wextra -Werror -Wunreachable-code $(OPT) $(DEBUG)
+CFLAGS  := -Wall -Wextra -Werror $(OPT) $(DEBUG)
 MLX_DIR  := ./lib/MLX42
 MLX      := $(MLX_DIR)/build/libmlx42.a
 LIBFT_DIR := ./lib/libft

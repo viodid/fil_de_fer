@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/06 10:59:15 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/06 11:09:34 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_fdf
  * Hooks
  */
 void			hooks(void *param);
-void			scroll_hook(double delta, void *param);
+void			scroll_hook(double _, double delta, void *param);
 void			rotation_hooks(void *param);
 
 /*
