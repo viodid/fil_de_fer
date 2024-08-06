@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 09:37:46 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/05 23:43:43 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/06 10:56:39 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	scroll_hook(double x_delta, double y_delta, void *param)
 void	rotation_hooks(void *param)
 {
 	t_fdf	*fdf;
-	int 	sign;
+	int		sign;
 
 	fdf = (t_fdf *)param;
 	sign = 0;
