@@ -6,7 +6,7 @@
 /*   By: dyunta <dyunta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:12:30 by dyunta            #+#    #+#             */
-/*   Updated: 2024/08/06 11:09:34 by dyunta           ###   ########.fr       */
+/*   Updated: 2024/08/06 12:45:01 by dyunta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef struct s_point
 	int				z;
 	unsigned int	color;
 }	t_point;
+
+typedef struct s_point_double
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_point_double;
 
 typedef struct s_projection
 {
